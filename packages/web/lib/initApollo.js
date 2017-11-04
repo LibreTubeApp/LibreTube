@@ -15,7 +15,7 @@ function create (initialState) {
     connectToDevTools: process.browser,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
-      uri: 'http://odin:4000/graphql', // Server URL (must be absolute)
+      uri: 'http://graphql:4000/graphql', // Server URL (must be absolute)
       opts: {
         method: 'POST',
         credentials: 'same-origin' // Additional fetch() options like `credentials` or `headers`

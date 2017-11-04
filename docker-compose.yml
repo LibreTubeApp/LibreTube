@@ -21,10 +21,10 @@ services:
       - "4000:4000"
     restart: always
     environment:
-      PGHOST: db
-      PGUSER: nextube
-      PGDATABASE: nextube
-      PGPASSWORD: hunter12
+      DBHOST: db
+      DBUSER: nextube
+      DBDATABASE: nextube
+      DBPASSWORD: hunter12
 
   web:
     build: packages/web

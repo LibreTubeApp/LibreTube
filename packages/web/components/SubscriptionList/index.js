@@ -7,16 +7,16 @@ const SubscriptionList = (props) => {
     data: {
       loading,
       error,
-      allSubscriptions,
+      hello,
     },
   } = props;
 
-  if (error) return 'Error!';
+  if (error) return `An error occured: ${error}`;
   if (loading) return <p>Loading...</p>;
 
   return (
     <div>
-      {allSubscriptions.hello} World
+      Hello {hello}!
     </div>
   );
 };
