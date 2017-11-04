@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:10-alpine
+    volumes:
+      - db_data:/var/lib/postgresql
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: hunter12
+      POSTGRES_USER: nextube
+      POSTGRES_DB: nextube
+
+  graphql:
+    build: packages/graphql
+    volumes:
+      - ./packages/graphql:/code:z
+    depends_on:
+      - db
+    ports:
+      - "4000:4000"
+    restart: always
+    environment:
+      PGHOST: db
+      PGUSER: nextube
+      PGDATABASE: nextube
+      PGPASSWORD: hunter12
+
+  web:
+    build: packages/web
+    depends_on:
+      - graphql
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./packages/web:/code:z
+    restart: always
+
+volumes:
+    db_data:
