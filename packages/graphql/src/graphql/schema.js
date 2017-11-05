@@ -1,4 +1,4 @@
-module.exports = [`
+export default [`
 scalar Date
 
 # A YouTube Video

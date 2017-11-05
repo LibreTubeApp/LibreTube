@@ -1,9 +1,10 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
-const { makeExecutableSchema } = require('graphql-tools');
-const typeDefs = require('./graphql/schema');
-const resolvers = require('./graphql/resolvers');
+import 'babel-polyfill';
+import express from 'express'
+import bodyParser from 'body-parser';
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
+import { makeExecutableSchema } from 'graphql-tools';
+import typeDefs from './graphql/schema';
+import resolvers from './graphql/resolvers';
 
 const main = async () => {
   const schema = makeExecutableSchema({

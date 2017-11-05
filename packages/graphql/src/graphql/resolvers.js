@@ -1,8 +1,8 @@
-const { GraphQLScalarType } = require('graphql');
-const { Kind } = require('graphql/language');
-const { Video, Channel } = require('./connectors');
+import { GraphQLScalarType } from 'graphql';
+import { Kind } from 'graphql/language';
+import { Video, Channel } from './connectors';
 
-module.exports = {
+export default {
   Query: {
     videos(_, args) {
       return Video.findAll({ where: args });

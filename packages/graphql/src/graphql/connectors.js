@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+import Sequelize from 'sequelize';
 
 const db = new Sequelize(
   process.env.DBDATABASE,
@@ -26,14 +26,14 @@ db.authenticate()
     throw error;
   });
 
-const Channel = db.define('channel', {
+export const Channel = db.define('channel', {
   title: Sequelize.STRING,
   description: Sequelize.STRING,
   username: Sequelize.STRING,
   etag: Sequelize.STRING,
 });
 
-const Video = db.define('video', {
+export const Video = db.define('video', {
   title: Sequelize.STRING,
   description: Sequelize.STRING,
   publishedAt: Sequelize.DATE,
@@ -44,4 +44,3 @@ Video.belongsTo(Channel);
 
 db.sync();
 
-module.exports = { Channel, Video };
