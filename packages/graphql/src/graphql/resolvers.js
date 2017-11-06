@@ -1,6 +1,6 @@
 import { GraphQLScalarType } from 'graphql';
 import { Kind } from 'graphql/language';
-import { Video, Channel } from './connectors';
+import { Video, Channel, Thumbnail } from './connectors';
 import { getChannelByName, refreshVideosOnChannel } from '../utils/ytapi';
 
 export default {
@@ -28,6 +28,13 @@ export default {
   Video: {
     channel(obj) {
       return Channel.findById(obj.dataValues.channelId);
+    },
+    thumbnails(obj) {
+      return Thumbnail.findAll({
+        where: {
+          videoId: obj.dataValues.id,
+        },
+      });
     },
   },
   Channel: {

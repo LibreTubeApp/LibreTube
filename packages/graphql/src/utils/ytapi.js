@@ -1,5 +1,5 @@
 import 'isomorphic-fetch';
-import { Video } from '../graphql/connectors';
+import { Video, Thumbnail } from '../graphql/connectors';
 
 const prefix = 'https://www.googleapis.com/youtube/v3';
 const apiKey = 'AIzaSyDeFkttvdLyrHWrxoSS36rhT-YaYuJvfjc';
@@ -35,12 +35,13 @@ export const refreshVideosOnChannel = async channelId => {
   }
 
   const data = await response.json();
-  data.items.forEach(video => {
+  data.items.forEach(async video => {
     const { etag, id, snippet } = video;
     const { publishedAt, title, description, thumbnails } = snippet;
+    console.log('thumbnails', thumbnails);
 
     // This does not await, and that is fine
-    Video.create({
+    await Video.create({
       id: id.videoId,
       channelId,
       title,
@@ -48,5 +49,10 @@ export const refreshVideosOnChannel = async channelId => {
       publishedAt,
       etag,
     });
+
+    for (const type in thumbnails) {
+      const { url, width, height } = thumbnails[type];
+      Thumbnail.create({ type, url, width, height, videoId: id.videoId });
+    }
   });
 };

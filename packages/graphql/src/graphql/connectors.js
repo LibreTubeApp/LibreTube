@@ -42,8 +42,18 @@ export const Video = db.define('video', {
   etag: Sequelize.STRING,
 });
 
+export const Thumbnail = db.define('thumbnail', {
+  type: Sequelize.STRING,
+  url: Sequelize.STRING,
+  width: Sequelize.INTEGER,
+  height: Sequelize.INTEGER,
+});
+
 Channel.hasMany(Video);
 Video.belongsTo(Channel);
+
+Channel.hasMany(Thumbnail);
+Video.hasMany(Thumbnail);
 
 db.sync();
 

@@ -15,6 +15,8 @@ type Video {
   etag: ID
   # The channel this video is posted by
   channel: Channel!
+  # A set of thumbnails illustrating this video
+  thumbnails: [Thumbnail]
 }
 
 # A YouTube Channel
@@ -31,6 +33,15 @@ type Channel {
   etag: ID
   # The videos this channel has posted
   videos: [Video]!
+  # A set of thumbnails illustrating this channel
+  thumbnails: [Thumbnail]
+}
+
+type Thumbnail {
+  type: String!
+  url: String!
+  width: Int
+  height: Int
 }
 
 # The root queries in which all queries are held
