@@ -23,7 +23,12 @@ export default {
       const created = await Channel.create(channel);
       await refreshVideosOnChannel(channel.id);
       return created.dataValues;
-    }
+    },
+  },
+  Video: {
+    channel(obj, args, context) {
+      return Channel.findById(obj.dataValues.channelId);
+    },
   },
   Date: new GraphQLScalarType({
     name: 'Date',
