@@ -20,15 +20,14 @@ const SubscriptionList = (props) => {
 
   if (error) return `An error occured: ${error}`;
   if (loading) return <p>Loading...</p>;
-  console.log('videos', videos);
 
   return (
     <div>
-      {videos.map(video => console.log('video.thumbnails', video.thumbnails)||(
-        <div>
+      {videos.map(video => (
+        <div key={video.id}>
           <img
             srcSet={buildSrcset(video.thumbnails)}
-            sizes="(min-width: 600px) 200px, 50vw"
+            sizes="(min-width: 600px) 480px, 50vw"
           />
           <p>{video.title}</p>
           <p>{video.channel.username}</p>
@@ -47,7 +46,6 @@ const allSubscriptions = gql`
         username
       }
       thumbnails {
-        type
         url
         width
       }
