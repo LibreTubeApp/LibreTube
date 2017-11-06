@@ -7,23 +7,35 @@ const SubscriptionList = (props) => {
     data: {
       loading,
       error,
-      hello,
+      videos,
     },
   } = props;
 
   if (error) return `An error occured: ${error}`;
   if (loading) return <p>Loading...</p>;
+  console.log('videos', videos);
 
   return (
     <div>
-      Hello {hello}!
+      {videos.map(video => (
+        <div>
+          <p>{video.title}</p>
+          <p>{video.channel.username}</p>
+        </div>
+      ))}
     </div>
   );
 };
 
 const allSubscriptions = gql`
   query allSubscriptions {
-    hello
+    videos {
+      id
+      title
+      channel {
+        username
+      }
+    }
   }
 `
 

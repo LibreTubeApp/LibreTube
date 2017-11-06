@@ -13,18 +13,24 @@ type Video {
   publishedAt: Date!
   # The most recent etag returned from the YouTube API
   etag: ID
+  # The channel this video is posted by
+  channel: Channel!
 }
 
 # A YouTube Channel
 type Channel {
   # A unique identifier of this channel
   id: ID!
+  # The username of the channel
+  username: String!
   # The title of the channel
   title: String!
   # A textual description of the channel
   description: String!
   # The most recent etag returned from the YouTube API
   etag: ID
+  # The videos this channel has posted
+  videos: [Video]!
 }
 
 # The root queries in which all queries are held
@@ -38,7 +44,7 @@ type Query {
 # The root mutation in which all mutations are held
 type Mutation {
   # Adds a channel into the channel set
-  addChannel(id: ID!): Channel
+  addChannel(username: String!): Channel
 }
 
 schema {

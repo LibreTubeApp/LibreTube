@@ -12,9 +12,11 @@
   "dependencies": {
     "apollo-server-express": "^1.2.0",
     "babel-polyfill": "^6.26.0",
+    "cors": "^2.8.4",
     "express": "^4.16.2",
     "graphql": "^0.11.7",
     "graphql-tools": "^2.7.2",
+    "isomorphic-fetch": "^2.2.1",
     "pg": "^7.4.0",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.22.4"

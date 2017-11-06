@@ -1,6 +1,7 @@
 import { GraphQLScalarType } from 'graphql';
 import { Kind } from 'graphql/language';
 import { Video, Channel } from './connectors';
+import { getChannelByName, refreshVideosOnChannel } from '../utils/ytapi';
 
 export default {
   Query: {
@@ -13,12 +14,14 @@ export default {
   },
   Mutation: {
     async addChannel(_, args) {
-      const exists = await Channel.findById(args.id);
-      if (exists) {
-        throw `A channel with the id ${args.id} already exists`;
+      const matches = await Channel.findAndCount({ where: args });
+      if (matches.count) {
+        throw `A channel with the username ${args.username} already exists`;
       }
 
-      const created = await Channel.create(args);
+      const channel = await getChannelByName(args.username);
+      const created = await Channel.create(channel);
+      await refreshVideosOnChannel(channel.id);
       return created.dataValues;
     }
   },

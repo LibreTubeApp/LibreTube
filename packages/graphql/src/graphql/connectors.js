@@ -27,6 +27,7 @@ db.authenticate()
   });
 
 export const Channel = db.define('channel', {
+  id: { type: Sequelize.STRING, primaryKey: true },
   title: Sequelize.STRING,
   description: Sequelize.STRING,
   username: Sequelize.STRING,
@@ -34,12 +35,14 @@ export const Channel = db.define('channel', {
 });
 
 export const Video = db.define('video', {
+  id: { type: Sequelize.STRING, primaryKey: true },
   title: Sequelize.STRING,
   description: Sequelize.STRING,
   publishedAt: Sequelize.DATE,
   etag: Sequelize.STRING,
 });
 
+Channel.hasMany(Video);
 Video.belongsTo(Channel);
 
 db.sync();
