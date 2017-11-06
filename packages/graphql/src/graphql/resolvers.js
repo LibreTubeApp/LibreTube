@@ -26,8 +26,17 @@ export default {
     },
   },
   Video: {
-    channel(obj, args, context) {
+    channel(obj) {
       return Channel.findById(obj.dataValues.channelId);
+    },
+  },
+  Channel: {
+    videos(obj) {
+      return Video.findAll({
+        where: {
+          channelId: obj.dataValues.id,
+        }
+      });
     },
   },
   Date: new GraphQLScalarType({
