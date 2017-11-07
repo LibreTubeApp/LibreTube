@@ -1,4 +1,4 @@
-import React from 'react'
+import Link from 'next/link'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
@@ -22,16 +22,37 @@ const SubscriptionList = (props) => {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div>
+    <div className="subscription-list">
+      <style jsx>{`
+        .subscription-list {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          max-width: 100vw;
+          padding: 20px;
+          grid-gap: 40px;
+        }
+        img {
+          width: 100%;
+        }
+      `}</style>
       {videos.map(video => (
-        <div key={video.id}>
-          <img
-            srcSet={buildSrcset(video.thumbnails)}
-            sizes="(min-width: 600px) 480px, 50vw"
-          />
-          <p>{video.title}</p>
-          <p>{video.channel.username}</p>
-        </div>
+        <Link
+          href={{
+            pathname: '/watch',
+            query: { v: video.id }
+          }}
+          prefetch
+          key={video.id}
+        >
+          <a>
+            <img
+              srcSet={buildSrcset(video.thumbnails)}
+              sizes="(min-width: 600px) 480px, 50vw"
+            />
+            <p>{video.title}</p>
+            <p>{video.channel.username}</p>
+          </a>
+        </Link>
       ))}
     </div>
   );

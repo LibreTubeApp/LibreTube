@@ -1,5 +1,3 @@
-import React from 'react';
-
 import withData from '../lib/withData'
 import Head from '../components/Head';
 import AddSubscription from '../components/AddSubscription';

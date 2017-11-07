@@ -42,6 +42,7 @@ export default ComposedComponent => {
           // Prevent Apollo Client GraphQL errors from crashing SSR.
           // Handle them in components via the data.error prop:
           // http://dev.apollodata.com/react/api-queries.html#graphql-query-data-error
+          console.log('error', error);
         }
         // getDataFromTree does not call componentWillUnmount
         // head side effect therefore need to be cleared manually
