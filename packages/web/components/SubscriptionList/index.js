@@ -27,23 +27,32 @@ const SubscriptionList = (props) => {
     <div className="subscription-list">
       <style jsx>{styles}</style>
       {videos.map(video => (
-        <Link
-          href={{
-            pathname: '/watch',
-            query: { v: video.id }
-          }}
-          prefetch
-          key={video.id}
-        >
-          <a>
-            <img
-              srcSet={buildSrcset(video.thumbnails)}
-              sizes="(min-width: 600px) 480px, 50vw"
-            />
-            <p>{video.title}</p>
+        <div>
+          <Link
+            href={{
+              pathname: '/watch',
+              query: { v: video.id }
+            }}
+            prefetch
+            key={video.id}
+          >
+            <a>
+              <img
+                srcSet={buildSrcset(video.thumbnails)}
+                sizes="(min-width: 600px) 480px, 50vw"
+                alt=""
+              />
+              <p>{video.title}</p>
+            </a>
+          </Link>
+          <a
+            href={`https://youtube.com/channel/${video.channel.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <p>{video.channel.username}</p>
           </a>
-        </Link>
+        </div>
       ))}
     </div>
   );
@@ -55,6 +64,7 @@ const allSubscriptions = gql`
       id
       title
       channel {
+        id
         username
       }
       thumbnails {
