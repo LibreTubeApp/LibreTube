@@ -6,12 +6,14 @@ export default ({ videoId }) => {
     <div className="outer-wrapper">
       <style jsx>{styles}</style>
       <div className="video-wrapper">
-        <iframe
+        <video
           className="video"
-          src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&autoplay=1`}
-          frameBorder="0"
-          allowFullScreen
-        />
+          autoPlay
+          controls
+        >
+          <source src={`//graphql:4000/videoplayback?v=${videoId}`} />
+          Your browser doesn't support HTML5 video tag. Get a better browser!
+        </video>
       </div>
     </div>
   );

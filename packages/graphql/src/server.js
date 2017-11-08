@@ -3,6 +3,7 @@ import express from 'express'
 import bodyParser from 'body-parser';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
+import ytdl from 'ytdl-core';
 
 import typeDefs from './graphql/schema';
 import resolvers from './graphql/resolvers';
@@ -21,9 +22,24 @@ const main = async () => {
   }
 
   app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+
   app.use('/graphql-explorer', graphiqlExpress({
     endpointURL: '/graphql',
   }));
+
+  app.use('/videoplayback', (req, res) => {
+    const { v: videoId } = req.query;
+    if (!ytdl.validateID(videoId)) {
+      res.status(400).send({
+        error: 'VALIDATION_ERROR',
+        reason: 'Invalid video id',
+      });
+      return;
+    }
+
+    ytdl(`https://www.youtube.com/watch?v=${videoId}`)
+      .pipe(res);
+  });
 
   app.listen(PORT);
 };

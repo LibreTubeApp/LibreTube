@@ -19,7 +19,8 @@
     "isomorphic-fetch": "^2.2.1",
     "pg": "^7.4.0",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.22.4"
+    "sequelize": "^4.22.4",
+    "ytdl-core": "^0.18.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
