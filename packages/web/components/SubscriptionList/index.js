@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
+import styles from './styles'
+
 const buildSrcset = thumbnails => (
   thumbnails.reduce((prev, thumbnail) => {
     const src = `${thumbnail.url} ${thumbnail.width}w`;
@@ -23,18 +25,7 @@ const SubscriptionList = (props) => {
 
   return (
     <div className="subscription-list">
-      <style jsx>{`
-        .subscription-list {
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr;
-          max-width: 100vw;
-          padding: 20px;
-          grid-gap: 40px;
-        }
-        img {
-          width: 100%;
-        }
-      `}</style>
+      <style jsx>{styles}</style>
       {videos.map(video => (
         <Link
           href={{
