@@ -1,4 +1,6 @@
 import 'isomorphic-fetch';
+import ytdl from 'ytdl-core';
+
 import { Video, Thumbnail } from '../graphql/connectors';
 
 const prefix = 'https://www.googleapis.com/youtube/v3';
@@ -55,4 +57,25 @@ export const refreshVideosOnChannel = async channelId => {
       Thumbnail.create({ type, url, width, height, videoId: id.videoId });
     }
   });
+};
+
+export const getSubtitlesForVideo = async videoId => {
+  try {
+    const info = await ytdl.getInfo(`https://www.youtube.com/watch?v=${videoId}`);
+    const captions = info.player_response.captions;
+    if (!captions) return null;
+
+    const tracks = captions.playerCaptionsTracklistRenderer.captionTracks;
+
+    return tracks.map(track => ({
+      name: track.name.simpleText,
+      languageCode: track.languageCode,
+      remoteUrl: track.baseUrl,
+      url: `/subtitles?url=${encodeURIComponent(track.baseUrl)}`,
+      vssId: track.vssId,
+      isTranslatable: track.isTranslatable,
+    }));
+  } catch (error) {
+    throw error;
+  }
 };

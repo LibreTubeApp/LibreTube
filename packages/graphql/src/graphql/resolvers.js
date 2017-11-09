@@ -1,7 +1,7 @@
 import { GraphQLScalarType } from 'graphql';
 import { Kind } from 'graphql/language';
 import { Video, Channel, Thumbnail } from './connectors';
-import { getChannelByName, refreshVideosOnChannel } from '../utils/ytapi';
+import { getChannelByName, refreshVideosOnChannel, getSubtitlesForVideo } from '../utils/ytapi';
 
 export default {
   Query: {
@@ -35,6 +35,9 @@ export default {
           videoId: obj.dataValues.id,
         },
       });
+    },
+    subtitles(obj) {
+      return getSubtitlesForVideo(obj.dataValues.id);
     },
   },
   Channel: {

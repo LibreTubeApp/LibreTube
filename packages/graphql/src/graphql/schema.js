@@ -17,6 +17,22 @@ type Video {
   channel: Channel!
   # A set of thumbnails illustrating this video
   thumbnails: [Thumbnail]
+  # Subtitles in different languages
+  subtitles: [Caption]
+}
+
+# A subtitle track
+type Caption {
+  # The human-readable name of this track
+  name: String!
+  # A BCP 47 code of this language
+  languageCode: String!
+  # The original URL of this resource
+  remoteUrl: String!
+  # The local resource which converts this transcript to vtt
+  url: String!
+  vssId: String!
+  isTranslatable: Boolean!
 }
 
 # A YouTube Channel

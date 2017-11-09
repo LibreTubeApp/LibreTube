@@ -7,6 +7,7 @@ import ytdl from 'ytdl-core';
 
 import typeDefs from './graphql/schema';
 import resolvers from './graphql/resolvers';
+import parseXml from './utils/parseXml';
 
 const main = async () => {
   const schema = makeExecutableSchema({
@@ -39,6 +40,23 @@ const main = async () => {
 
     ytdl(`https://www.youtube.com/watch?v=${videoId}`)
       .pipe(res);
+  });
+
+  app.use('/subtitles', async (req, res) => {
+    const { url } = req.query;
+    console.log('url', url);
+
+    const result = await fetch(url);
+    if (!result.ok) {
+      res.status(500).send({
+        error: 'FETCH_ERROR',
+        reason: 'Failed to fetch the subtitles',
+      });
+    }
+
+    const xml = await result.text();
+    const payload = await parseXml(xml);
+    res.set('Content-Type', 'text/vtt').send(payload);
   });
 
   app.listen(PORT);
