@@ -1,7 +1,8 @@
+import withData from '../lib/withData'
 import Head from '../components/Head';
 import VideoPlayer from '../components/VideoPlayer';
 
-export default (props) => {
+export default withData((props) => {
   const { v: videoId } = props.url.query;
 
   return (
@@ -10,4 +11,4 @@ export default (props) => {
       <VideoPlayer videoId={videoId} />
     </main>
   );
-}
+});

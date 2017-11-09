@@ -56,7 +56,7 @@ const main = async () => {
 
     const xml = await result.text();
     const payload = await parseXml(xml);
-    res.set('Content-Type', 'text/vtt').send(payload);
+    res.type('text/vtt').send(payload);
   });
 
   app.listen(PORT);

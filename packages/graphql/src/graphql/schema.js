@@ -64,6 +64,8 @@ type Thumbnail {
 type Query {
   # The channels this user has subscribed to
   channels: [Channel]!
+  # A video
+  video(id: ID!): Video
   # The videos of the current user's subscriptions
   videos: [Video]!
 }

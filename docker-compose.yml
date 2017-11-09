@@ -17,8 +17,6 @@ services:
       - ./packages/graphql:/code:z
     depends_on:
       - db
-    ports:
-      - "4000:4000"
     restart: always
     environment:
       DBHOST: db
@@ -28,12 +26,14 @@ services:
 
   web:
     build: packages/web
-    depends_on:
-      - graphql
-    ports:
-      - "3000:3000"
     volumes:
       - ./packages/web:/code:z
+    restart: always
+
+  proxy:
+    build: packages/dev-proxy
+    ports:
+      - "3000:3000"
     restart: always
 
 volumes:

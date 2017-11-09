@@ -8,6 +8,9 @@ export default {
     videos(_, args) {
       return Video.findAll({ where: args });
     },
+    video(_, args) {
+      return Video.findById(args.id);
+    },
     channels(_, args) {
       return Channel.findAll({ where: args });
     },

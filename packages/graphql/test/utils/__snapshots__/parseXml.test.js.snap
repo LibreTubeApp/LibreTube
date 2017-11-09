@@ -3,978 +3,978 @@
 exports[`the parseXml util should parse the XML properly 1`] = `
 "WEBVTT
 
-0.02 --> 3.44
+00:00.20 --> 00:03.439
 Hey Vsauce! Michael here. Down here.
 
-4.84 --> 7.54
+00:04.839 --> 00:07.540
 But which way is down?
 
-7.74 --> 14.42
+00:07.740 --> 00:14.419
 And how much does down weigh? Well, down weighs about a hundredth of a gram per cubic centimeter.
 
-14.68 --> 20.06
+00:14.679 --> 00:20.59
 It is light and airy which makes it a great source of insulation and buoyancy for water birds
 
-20.24 --> 22.38
+00:20.239 --> 00:22.379
 but if you let go of down...
 
-22.94 --> 24.84
+00:22.940 --> 00:24.839
 It falls down.
 
-25.04 --> 26.58
+00:25.39 --> 00:26.579
 So that's which way down is.
 
-26.68 --> 28.96
+00:26.679 --> 00:28.960
 It's the direction gravity is pulling everything in.
 
-29.24 --> 32.92
+00:29.239 --> 00:32.920
 Now, for someone on the other side of the Earth, my down is their up.
 
-33.1 --> 38.42
+00:33.100 --> 00:38.420
 But where are falling things going? Why do things fall?
 
-38.52 --> 43.68000000000001
+00:38.520 --> 00:43.680
 Are they being pushed, or pulled, or is it because of time travel?
 
-44.4 --> 48.46
+00:44.399 --> 00:48.460
 First things first: let's turn the Sun into a black hole.
 
-49.14 --> 55
+00:49.140 --> 00:55.0
 We can do that using universe sandbox 2, this simulator will blow your mind. I love it.
 
-55.04 --> 59.379999999999995
+00:55.39 --> 00:59.379
 In fact, I love it so much I put a code to get the game for free in the current curiosity box.
 
-59.38 --> 62.18
+00:59.380 --> 01:02.179
 If you're not subscribed to the box yet, you are missing out!
 
-62.2 --> 66.24000000000001
+01:02.200 --> 01:06.240
 Okay, look, for the purposes of this video, we want the solar system.
 
-66.24 --> 70.41999999999999
+01:06.239 --> 01:10.419
 And here it is. Notice that everything's moving pretty quickly around the Sun.
 
-70.44 --> 74.72
+01:10.439 --> 01:14.719
 That's because we currently have the game set so that every second that passes for us,
 
-74.72 --> 77.22
+01:14.719 --> 01:17.219
 is 14 days, almost, in the game.
 
-77.22 --> 80.74
+01:17.219 --> 01:20.739
 If I change this to one second,
 
-80.74 --> 83.28
+01:20.739 --> 01:23.280
 We're looking at the solar system in real time.
 
-83.58 --> 85.88
+01:23.579 --> 01:25.879
 You'll notice that it almost looks like it's frozen.
 
-86.42 --> 91.6
+01:26.420 --> 01:31.599
 even though the earth is traveling around the Sun at about 30 km/s, it barely appears to be moving.
 
-91.76 --> 95.64
+01:31.760 --> 01:35.640
 That is how vast space is. Anyway, let's go back to 14 days
 
-95.66 --> 97.56
+01:35.659 --> 01:37.560
 I like that motion. Now look at the Sun
 
-97.57 --> 103.25899999999999
+01:37.569 --> 01:43.258
 It is not, currently, a black hole, but we can change that. What we need to do is compress the Sun.
 
-103.39 --> 108.72
+01:43.390 --> 01:48.719
 So let's lock its mass so that it doesn't change while we make its radius smaller.
 
-109.299 --> 111.959
+01:49.299 --> 01:51.959
 Let's make its radius as small as we can.
 
-112.58 --> 118.86
+01:52.579 --> 01:58.859
 And, oh, where'd it go? Well it's still there, it's just become a black hole.
 
-119.14 --> 123.44
+01:59.140 --> 02:03.439
 Pretty spooky, but now, let's look at the rest of the solar system.
 
-123.54 --> 126.819
+02:03.540 --> 02:06.819
 Alright, zooming out and-
 
-126.819 --> 127.959
+02:06.819 --> 02:07.959
 huh.
 
-127.96 --> 131.12
+02:07.959 --> 02:11.120
 Nothing's... changed. I mean something's changed.
 
-131.24 --> 136
+02:11.240 --> 02:16.0
 It's colder and darker, but nothing's flying off into space or getting sucked in.
 
-136.26 --> 140.34
+02:16.259 --> 02:20.340
 You see,  by shrinking the sun, we didn't change the direction of down for the planets.
 
-140.34 --> 145.739
+02:20.340 --> 02:25.739
 They're always being pulled by gravity towards its middle and making it smaller didn't move where the middle was.
 
-145.92 --> 151.79999999999998
+02:25.919 --> 02:31.799
 But also, the strength of that force pulling them to the middle of the sun stayed the same.
 
-152.26 --> 155.42
+02:32.259 --> 02:35.419
 That gives us a clue as to what down is.
 
-155.62 --> 159.98000000000002
+02:35.620 --> 02:39.980
 The clue is the other thing we didn't change: mass.
 
-160.26 --> 165.2
+02:40.259 --> 02:45.199
 Mass is a measure of how hard it is to accelerate something; to change its motion.
 
-165.46 --> 169.4
+02:45.460 --> 02:49.400
 Now right now, these two balls have zero motion relative to me.
 
-170.26 --> 172.56
+02:50.259 --> 02:52.560
 Slapping around this hollow plastic ball
 
-174.34 --> 178.109
+02:54.340 --> 02:58.109
 is pretty easy, but doing the same to this solid steel ball
 
-181.42 --> 182.67999999999998
+03:01.419 --> 03:02.679
 is a lot harder.
 
-183.12 --> 185.94
+03:03.120 --> 03:05.939
 Now gravity and weight have nothing to do with this.
 
-186.48 --> 190.28
+03:06.479 --> 03:10.280
 Gravity acts downward, not against my horizontal slapping.
 
-190.28 --> 196.4
+03:10.280 --> 03:16.400
 Of course, gravity does contribute to friction, but friction works against me when I start moving the ball,
 
-196.599 --> 199.018
+03:16.598 --> 03:19.18
 but works with me when I stop the ball.
 
-199.019 --> 202.739
+03:19.19 --> 03:22.739
 And the steel ball is harder to stop than the plastic ball.
 
-203.079 --> 207.149
+03:23.79 --> 03:27.149
 The difference is mass. The steel ball is more massive
 
-207.149 --> 210.94
+03:27.149 --> 03:30.939
 It's more resistant to having its motion changed.
 
-210.94 --> 216.7
+03:30.939 --> 03:36.699
 Mass is an intrinsic property; it does not depend on what's around or change from place to place.
 
-216.7 --> 220.61999999999998
+03:36.699 --> 03:40.619
 It can sometimes be thought of as the amount of matter something has.
 
-220.62 --> 223.96
+03:40.620 --> 03:43.960
 Your mass is the same regardless of where you are.
 
-223.96 --> 227.76000000000002
+03:43.960 --> 03:47.760
 On the moon, on earth, in the middle of intergalactic space floating around.
 
-228 --> 233.3
+03:48.0 --> 03:53.300
 But all of this said, mass does seem to care about what's around.
 
-233.82 --> 236.35999999999999
+03:53.819 --> 03:56.359
 Mass loves company.
 
-237.16 --> 243.35999999999999
+03:57.159 --> 04:03.359
 Things with mass and/or energy are attracted together by a force that we call gravity.
 
-243.609 --> 248.18900000000002
+04:03.609 --> 04:08.189
 The feeling of gravity is just you and the earth being attracted to one another.
 
-248.64 --> 253.11999999999998
+04:08.639 --> 04:13.119
 Now every portion of an object with mass attracts other portions towards it.
 
-253.48 --> 258.86
+04:13.479 --> 04:18.860
 The average of all this pulling is an attraction between centers of mass.
 
-259.02 --> 266.5
+04:19.19 --> 04:26.500
 Giant things like Earth exert an obvious pull, but everything does. Even a baseball.
 
-266.58 --> 272.21999999999997
+04:26.579 --> 04:32.219
 These two baseballs are attracted together by their own gravities.
 
-276.16 --> 282.92
+04:36.160 --> 04:42.920
 Except their masses are so small, the force is minuscule, and it can't overcome friction or push air out of the way.
 
-283.24 --> 284.889
+04:43.240 --> 04:44.889
 They're never gonna come together
 
-284.889 --> 291.809
+04:44.889 --> 04:51.809
 But if you put two baseballs one meter apart in the middle of empty space where no other forces could act on them
 
-292.03 --> 296.57899999999995
+04:52.29 --> 04:56.578
 They would literally fall together and collide.
 
-297.13 --> 300.539
+04:57.129 --> 05:00.538
 It would take three days to happen, but it would.
 
-301.599 --> 307.43899999999996
+05:01.598 --> 05:07.438
 Isaac Newton found that the strength of the force bringing two things together is equal to the product of their masses
 
-308.32 --> 315.389
+05:08.319 --> 05:15.389
 Divided by the distance between their centers of mass squared times big G, the gravitational constant.
 
-315.789 --> 320.789
+05:15.788 --> 05:20.788
 If you make one of two objects more massive, or move them closer together, the force will be
 
-321.01 --> 325.379
+05:21.9 --> 05:25.379
 Stronger and this force of attraction is what we call weight
 
-326.05 --> 330.27000000000004
+05:26.50 --> 05:30.270
 So mass is intrinsic whereas weight depends on what's around
 
-331.46 --> 335.13899999999995
+05:31.459 --> 05:35.138
 Now a weird thing happens when you weigh yourself on most scales
 
-335.42 --> 339.52000000000004
+05:35.420 --> 05:39.520
 Weight is a force but scales display pounds or kilograms
 
-339.65 --> 342.93899999999996
+05:39.649 --> 05:42.938
 Which are units of mass what's going on?
 
-342.94 --> 344.84
+05:42.939 --> 05:44.839
 Is that a scale is
 
-344.84 --> 346.7
+05:44.839 --> 05:46.699
 activated by a force?
 
-346.7 --> 347.289
+05:46.699 --> 05:47.288
 Any force.
 
-347.29 --> 351.999
+05:47.290 --> 05:51.999
 It doesn't have to be caused by gravity. The scale then displays what amount of mass
 
-352.25 --> 357.31
+05:52.250 --> 05:57.310
 Near the surface of the earth would be attracted to the earth with the force. It's detecting
 
-357.95 --> 363.81899999999996
+05:57.949 --> 06:03.818
 Now since scales tend to be used on the surface of the earth by people on which the only force acting is gravity
 
-364.04 --> 371.469
+06:04.40 --> 06:11.468
 They tend to not be very far off, but they can be easily tricked and they further lead to the confusion between mass and weight
 
-372.95 --> 380.289
+06:12.949 --> 06:20.288
 Notice that weight is mutual. You are pulled down by earth with the same force that you pull up on earth.
 
-380.84 --> 383.25899999999996
+06:20.839 --> 06:23.258
 According to a scale I weigh
 
-383.99 --> 385.99
+06:23.990 --> 06:25.990
 180 pounds on earth
 
-390.76 --> 395.43
+06:30.759 --> 06:35.430
 And the earth weighs 180 pounds on me
 
-396.7 --> 400.89
+06:36.699 --> 06:40.889
 but because the Earth's mass is so much greater than my own and
 
-401.56 --> 406.53000000000003
+06:41.560 --> 06:46.530
 Because the more massive something is the more it resists being moved our
 
-406.81 --> 410.73
+06:46.810 --> 06:50.730
 Equal and opposite weight forces accelerate me a lot more than the earth
 
-411.16 --> 418.589
+06:51.160 --> 06:58.588
 If you drop a pencil from a height of 6 feet the pencil doesn't just fall to the earth more precisely
 
-418.87 --> 420.87
+06:58.870 --> 07:00.870
 They both come together.
 
-421.27 --> 423.719
+07:01.269 --> 07:03.718
 They're attracted to each other by equal forces
 
-423.72 --> 426.02900000000005
+07:03.720 --> 07:06.29
 but the same force moves the pencil a
 
-426.25 --> 431.369
+07:06.250 --> 07:11.369
 Lot more than the earth when you let go of the pencil the earth is literally pulled up
 
-431.44 --> 436.89
+07:11.439 --> 07:16.889
 To the pencil by the pencils own gravity a distance equal to about 9 trillion
 
-437.47 --> 439.65000000000003
+07:17.470 --> 07:19.650
 the width of a proton. That
 
-440.17 --> 445.11
+07:20.170 --> 07:25.110
 same force moves the pencil the remaining distance, which is still pretty much six feet
 
-446.59 --> 452.21999999999997
+07:26.589 --> 07:32.219
 At the height of the International Space Station's orbit you and earth are attracted about
 
-453.07 --> 459.15
+07:33.69 --> 07:39.149
 10% less than when you're on the surface about eight point eight times your mass but not zero
 
-459.82 --> 466.679
+07:39.819 --> 07:46.678
 for this reason weightless astronauts in zero gravity are neither weightless nor in zero gravity
 
-467.47 --> 471.72
+07:47.470 --> 07:51.720
 their weight force fails to bring them and earth together because they move horizontally
 
-471.97 --> 477.69000000000005
+07:51.970 --> 07:57.690
 So quickly that they fall. Just as fast as Earth's surface curves away from them and
 
-478.3 --> 482.759
+07:58.300 --> 08:02.759
 Even though they're experiencing 90 percent of the gravity you and I are feeling right now
 
-483.19 --> 484.75
+08:03.189 --> 08:04.750
 That's why they don't just fly away
 
-484.75 --> 491.88
+08:04.750 --> 08:11.879
 There are no forces called g-forces to resist their weight since everything around them is falling too
 
-492.31 --> 496.17
+08:12.310 --> 08:16.170
 It's resistance to your weight force stress
 
-497.08 --> 503.18899999999996
+08:17.79 --> 08:23.188
 Deformation that is needed for you to feel weight what astronauts in orbit actually lack is
 
-504.13 --> 506.13
+08:24.129 --> 08:26.129
 apparent weight
 
-506.35 --> 509.46000000000004
+08:26.350 --> 08:29.460
 likewise a helium balloon has weight
 
-509.46 --> 515.299
+08:29.459 --> 08:35.298
 I mean, it's made out of matter it clearly has mass so it's attracted to the earth
 
-516.029 --> 518.119
+08:36.28 --> 08:38.119
 Let's try to measure its weight force
 
-521.01 --> 523.01
+08:41.9 --> 08:43.9
 That's eight
 
-523.979 --> 526.759
+08:43.979 --> 08:46.759
 Okay it has negative apparent weight
 
-526.89 --> 532.58
+08:46.889 --> 08:52.580
 That's because its attraction to the earth is weaker than the buoyant forces from the air around it that push it up
 
-532.86 --> 534.5
+08:52.860 --> 08:54.500
 Now while it moves up
 
-534.5 --> 541.7
+08:54.500 --> 09:01.700
 It pushes air molecules down, but they transfer that force widely. Not just directly down onto the scale
 
-542.279 --> 547.369
+09:02.278 --> 09:07.369
 Buoyant forces are caused by the fact that whenever you are immersed in a fluid like water or air
 
-548.19 --> 550.7600000000001
+09:08.190 --> 09:10.760
 Molecules lower down are at greater pressure
 
-550.98 --> 553.3100000000001
+09:10.980 --> 09:13.310
 That are being pressed by the weight of all the molecules
 
-553.44 --> 558.469
+09:13.440 --> 09:18.469
 Above them and are closer to earth so they're pulled to it with a stronger force now having greater pressure
 
-558.57 --> 561.7090000000001
+09:18.570 --> 09:21.709
 Means they pack a bigger punch when they collide with things.
 
-562.26 --> 563.459
+09:22.259 --> 09:23.458
 So
 
-563.459 --> 565.549
+09:23.458 --> 09:25.548
 horizontally those collisions cancel out
 
-565.62 --> 572.239
+09:25.620 --> 09:32.239
 But vertically the stronger collisions from below went out providing lift a buoyant force
 
-572.55 --> 578.4789999999999
+09:32.549 --> 09:38.478
 This even happens on your own body across its surface area air lifts you with the force of about one
 
-578.61 --> 585.589
+09:38.610 --> 09:45.589
 Newton which is equal to the weight force of an apple so if you weighed yourself in a vacuum you would weigh about
 
-585.839 --> 587.839
+09:45.839 --> 09:47.839
 this much more
 
-588.27 --> 594.679
+09:48.269 --> 09:54.678
 But that's not all Earth's spin causes it to bulge at the equator so the closer you are to it
 
-594.68 --> 601.76
+09:54.679 --> 10:01.759
 The further you are from Earth's center of mass and the less your actual gravitational weight will be down is
 
-602.1 --> 604.19
+10:02.100 --> 10:04.190
 Always changing, I mean
 
-604.29 --> 611.029
+10:04.289 --> 10:11.28
 where is Earth's center of mass? It would always be the same as Earth's geometric middle if Earth's
 
-611.25 --> 618.38
+10:11.250 --> 10:18.379
 composition was uniform, but earth contains pockets of massive rock at different depths water mountains
 
-618.38 --> 623.779
+10:18.379 --> 10:23.778
 It's got moving changing insides and air and seasonal ice and though they're far away
 
-624.24 --> 630.799
+10:24.240 --> 10:30.798
 Gravity extends forever from everything so the moon the Sun the planets all of them pull on you
 
-631.709 --> 632.8199999999999
+10:31.708 --> 10:32.819
 negligibly,
 
-632.82 --> 639.2890000000001
+10:32.820 --> 10:39.289
 But truly. You weigh about a millionth of your weight less when the moon is directly above you
 
-639.66 --> 646.74
+10:39.659 --> 10:46.740
 This chunky shifting balance of material on earth and ever where else in the universe means that down is
 
-647.2 --> 648.25
+10:47.200 --> 10:48.250
 always
 
-648.25 --> 650.849
+10:48.250 --> 10:50.849
 changing on top of that Earth's spin
 
-651.1 --> 656.82
+10:51.100 --> 10:56.820
 Skews what you consider the direction of down away from its center of mass because the push you get from Earth's spin
 
-657.04 --> 661.4399999999999
+10:57.39 --> 11:01.439
 Seems to slightly lift you reducing your apparent weight and bending down
 
-661.93 --> 663.31
+11:01.929 --> 11:03.309
 towards the equator
 
-663.31 --> 670.5
+11:03.309 --> 11:10.500
 The net result is an apparent weight reduction at the equator of about half of a percent if a scale guesses your mass must be
 
-670.93 --> 674.039
+11:10.929 --> 11:14.38
 200 pounds at the poles it'll guess that you're
 
-674.769 --> 678.239
+11:14.769 --> 11:18.239
 199 at the equator. The 9.8
 
-678.31 --> 684.6899999999999
+11:18.309 --> 11:24.689
 Multiplier used so often in physics is calculated based on how these factors affect someone at 45 degrees latitude
 
-685.209 --> 690.419
+11:25.208 --> 11:30.418
 all of these influences on the direction of down result in a total vertical deflection.
 
-690.82 --> 694.769
+11:30.820 --> 11:34.769
 That's only ever at most a few arc seconds anywhere on earth
 
-695.05 --> 701.8199999999999
+11:35.49 --> 11:41.819
 That's not enough to be felt, but changes in direction and strength can be used to study the shape of the seafloor
 
-702.43 --> 707.37
+11:42.429 --> 11:47.370
 Determine what's under you or even help you discover ancient buried rooms?
 
-708.399 --> 713.969
+11:48.399 --> 11:53.969
 Point is all of our downs aren't a bunch of radially symmetric lines
 
-714.579 --> 717.029
+11:54.578 --> 11:57.28
 Down is an uncombed mess.
 
-717.55 --> 723.24
+11:57.549 --> 12:03.240
 Now since solids don't flow they can have shapes that don't pay much mind to this but water can
 
-723.64 --> 731.249
+12:03.639 --> 12:11.249
 Flow so ignoring influences like wind and tides the surface of oceans and lakes and puddles is always perpendicular
 
-731.38 --> 737.07
+12:11.379 --> 12:17.70
 To down if water could pass through land, or if earth were submerged in water
 
-737.86 --> 741.419
+12:17.860 --> 12:21.418
 Gravity would be the same everywhere along its bumpy surface
 
-741.79 --> 746.25
+12:21.789 --> 12:26.250
 Such a surface is called a geoid and can be drawn at any altitude
 
-746.709 --> 752.459
+12:26.708 --> 12:32.458
 If you wanted to build a table that completely enclosed the earth it would have to have rolling undulation
 
-752.459 --> 755.3389999999999
+12:32.458 --> 12:35.338
 Z' nearly 100 meters at some points in order to be
 
-755.89 --> 759.629
+12:35.889 --> 12:39.629
 Level so that a ball placed anywhere on it wouldn't roll
 
-760.24 --> 763.62
+12:40.240 --> 12:43.620
 Here is Earth's G. I exaggerated a thousand times
 
-764.11 --> 768.1800000000001
+12:44.110 --> 12:48.180
 You'd weigh about a hundredth of a percent less a few grams here?
 
-768.18 --> 773.909
+12:48.179 --> 12:53.908
 Then you would say here where gravity is a bit stronger point is the strength and direction
 
-774.259 --> 778.7280000000001
+12:54.259 --> 12:58.728
 Down is variable by location and changes over time
 
-779.489 --> 784.279
+12:59.489 --> 13:04.278
 So down is a fluctuating vector easy enough except?
 
-784.739 --> 788.539
+13:04.739 --> 13:08.538
 Why should matter attract matter in the first place?
 
-789.54 --> 793.759
+13:09.539 --> 13:13.759
 Isaac Newton was able to describe attraction, but not explain it
 
-794.369 --> 799.369
+13:14.369 --> 13:19.369
 humanity got closer however when Albert Einstein introduced his general theory of relativity
 
-800.639 --> 803.988
+13:20.639 --> 13:23.988
 Einstein thought a lot about the fact that everything falls to the ground
 
-804.329 --> 806.5079999999999
+13:24.328 --> 13:26.507
 At the same rate no matter
 
-806.509 --> 813.1080000000001
+13:26.509 --> 13:33.108
 How massive something is when dropped it will accelerate towards the earth down gaining about 9.8
 
-813.109 --> 817.249
+13:33.109 --> 13:37.249
 Meters per second for every second that it falls. That means that a hammer
 
-817.589 --> 824.628
+13:37.589 --> 13:44.628
 That's quite massive, and a not so massive feather when dropped from the same height will hit the ground at the same time
 
-827.819 --> 829.819
+13:47.818 --> 13:49.818
 Okay, what just happened...
 
-830.279 --> 831.989
+13:50.278 --> 13:51.989
 was an \\"air\\"ror.
 
-831.989 --> 833.039
+13:51.989 --> 13:53.38
 awkward laugh
 
-833.039 --> 836.389
+13:53.38 --> 13:56.389
 In order to fall through air a thing has to push air out of the way
 
-836.549 --> 841.759
+13:56.548 --> 14:01.759
 But if it has a large surface area and a low weight force it will have a lot of air to move
 
-841.889 --> 847.279
+14:01.889 --> 14:07.278
 But won't be able to move that air very quickly. In a vacuum, things do fall at the same rate regardless
 
-847.46 --> 852.94
+14:07.460 --> 14:12.940
 Of mass. This was famously demonstrated by Apollo 15 commander David Scott on the moon
 
-854.04 --> 858.66
+14:14.39 --> 14:18.659
 And I'll, uh, drop the two of them here and hopefully, they'll hit the ground at the same time.
 
-860.28 --> 861.26
+14:20.279 --> 14:21.259
 How 'bout that?
 
-861.26 --> 866.34
+14:21.259 --> 14:26.340
 That's weird right? I mean if a more massive object is pulled with a greater force
 
-867.149 --> 870.589
+14:27.149 --> 14:30.589
 Shouldn't it fall faster? Well Newton's explanation was simple:
 
-871.41 --> 874.16
+14:31.409 --> 14:34.159
 Larger masses are attracted with greater forces
 
-874.589 --> 879.4380000000001
+14:34.589 --> 14:39.438
 But will also require more force to be accelerated the same as a less massive thing
 
-879.899 --> 886.008
+14:39.899 --> 14:46.8
 Something a hundred times more massive might require a hundred times the force, but it will be pulled by gravity
 
-886.769 --> 891.769
+14:46.769 --> 14:51.769
 100 times more so everything falls to earth at the same rate
 
-892.499 --> 894.499
+14:52.499 --> 14:54.499
 What a fun coincidence right?
 
-896.97 --> 898.739
+14:56.970 --> 14:58.739
 Maybe not
 
-898.739 --> 902.749
+14:58.739 --> 15:02.749
 Einstein realized that there's another way for things to appear to fall together
 
-903.889 --> 905.399
+15:03.889 --> 15:05.399
 of their masses
 
-905.399 --> 912.888
+15:05.399 --> 15:12.888
 Imagine a feather and a hammer floating in space in a room if the room is suddenly accelerated up at 9.8
 
-913.319 --> 918.079
+15:13.318 --> 15:18.78
 M/s^2 the feather and the hammer will hit the floor at the same time
 
-918.72 --> 924.3190000000001
+15:18.720 --> 15:24.319
 furthermore whether it's the room coming up to meet them or gravity being suddenly switched on
 
-924.66 --> 927.919
+15:24.659 --> 15:27.918
 Neither object will feel any force pushing them
 
-928.079 --> 933.318
+15:28.78 --> 15:33.317
 There's no way to tell which of these happen. This is Einstein's famous
 
-934.019 --> 935.399
+15:34.19 --> 15:35.399
 equivalence principle
 
-935.399 --> 939.618
+15:35.399 --> 15:39.618
 He once admitted that his greatest thought ever was that of a man
 
-940.439 --> 942.439
+15:40.438 --> 15:42.438
 falling off of a roof
 
-942.629 --> 948.558
+15:42.629 --> 15:48.557
 While falling the man would not feel any forces on him even though. He's speeding up
 
-949.529 --> 950.91
+15:49.528 --> 15:50.909
 freefall is
 
-950.91 --> 957.29
+15:50.909 --> 15:57.289
 Indistinguishable from floating alone in space from having no forces on you from not being moved
 
-957.689 --> 963.558
+15:57.688 --> 16:03.557
 What if gravity isn't a force at all what if things fall not because they're being pushed or pulled
 
-963.809 --> 967.789
+16:03.808 --> 16:07.788
 But because they're not being pushed or pull
 
-968.1 --> 972.619
+16:08.100 --> 16:12.619
 To see how this could be we need to talk about straight lines
 
-973.649 --> 977.388
+16:13.649 --> 16:17.388
 What I have here is a retractable ID badge holder
 
-977.489 --> 980.2090000000001
+16:17.489 --> 16:20.209
 This is a great way to test for straight paths
 
-980.699 --> 984.168
+16:20.698 --> 16:24.168
 Because the string is always kept taut the card
 
-984.169 --> 986.749
+16:24.168 --> 16:26.749
 I have behind has two lines drawn on it
 
-986.749 --> 992.058
+16:26.749 --> 16:32.57
 And if while I pull the string out it always stays between those two lines
 
-992.059 --> 994.459
+16:32.58 --> 16:34.458
 I will know that I never turned
 
-994.86 --> 1000.6990000000001
+16:34.860 --> 16:40.699
 While I pulled it because any turn will translate into a different angle between the lines on the card and the string
 
-1000.949 --> 1007.178
+16:40.948 --> 16:47.177
 Now if I put two of these on a flat table and pull them out, always ensuring that they go straight ahead
 
-1007.399 --> 1015.128
+16:47.399 --> 16:55.128
 They will never meet. They will be forever parallel, but now let's put them on a sphere a curved surface
 
-1015.799 --> 1022.119
+16:55.798 --> 17:02.119
 Again, I pull both strings forward making sure that they always are pulled out straight. No turning
 
-1023.059 --> 1025.059
+17:03.58 --> 17:05.58
 Wait they came together
 
-1026.13 --> 1028.3090000000002
+17:06.130 --> 17:08.309
 Well, they didn't turn look
 
-1028.71 --> 1035.8400000000001
+17:08.710 --> 17:15.840
 Maybe there's some kind of weird force that pulled my hands together and just like gravity. I didn't feel it, but it happened
 
-1036.39 --> 1037.5600000000002
+17:16.390 --> 17:17.560
 No
 
-1037.56 --> 1042.44
+17:17.559 --> 17:22.440
 What happened was not the result of a force it was just a natural result of?
 
-1043.14 --> 1049.97
+17:23.140 --> 17:29.970
 Curvature you might be thinking wait a second are those really straight lines. I mean they don't look that straight to me
 
-1050.64 --> 1057.5
+17:30.640 --> 17:37.500
 Also, what if they've just moved along latitude lines then they've never come together and those look pretty darn straight
 
-1058.44 --> 1065.509
+17:38.440 --> 17:45.509
 But they're not a straight line never turns and although latitude lines look straight at first glance
 
-1066.27 --> 1068.27
+17:46.269 --> 17:48.269
 following one requires
 
-1068.28 --> 1074.149
+17:48.279 --> 17:54.148
 Turning to find straight line paths on surfaces whether they're flat like this or curved
 
-1074.33 --> 1078.319
+17:54.329 --> 17:58.318
 I love the written text now you can use an actual ribbon
 
-1078.32 --> 1084.1689999999999
+17:58.319 --> 18:04.168
 But I have found that a strip of paper works. Even better. Let's take a look at this path right here
 
-1084.48 --> 1090.319
+18:04.480 --> 18:10.318
 It's straight at first, but then it curves now if two people are traveling along this curve
 
-1090.32 --> 1096.08
+18:10.319 --> 18:16.79
 And they want to stay together the person on the inside will have to cover a shorter distance than the person on the outside
 
-1096.99 --> 1100.429
+18:16.990 --> 18:20.429
 Since both sides of this strip of paper cannot change their lengths
 
-1100.43 --> 1105.409
+18:20.430 --> 18:25.409
 They'll help us find a straight path if the strip of paper can lay flat
 
-1105.6 --> 1108.889
+18:25.599 --> 18:28.888
 We'll know that we have found a straight line and as you can see
 
-1109.23 --> 1112.789
+18:29.230 --> 18:32.788
 The strip can lay flat and follow the straight part of this path
 
-1112.89 --> 1116.15
+18:32.890 --> 18:36.150
 But when it comes to the curve in order to follow the path now
 
-1116.34 --> 1120.1689999999999
+18:36.339 --> 18:40.168
 The strip well it has too much material on the inside and that material
 
-1120.33 --> 1126.4089999999999
+18:40.329 --> 18:46.408
 Bunches up and leaves the plane therefore we know that this part of the path is not straight
 
-1127.77 --> 1132.199
+18:47.769 --> 18:52.199
 Let's use the ribbon test to find straight lines on the surface of a cone
 
-1132.66 --> 1138.8890000000001
+18:52.660 --> 18:58.889
 Well from the looks of it aligned directly from the base to the tip seems like it would be straight and sure enough
 
-1138.93 --> 1144.199
+18:58.930 --> 19:04.199
 Yeah, the ribbon lays flat on that path, but what about a ring around the cone?
 
-1145.08 --> 1151.46
+19:05.79 --> 19:11.460
 Nope doesn't work shorter distances around nearer the tip of the cone mean that there's too much ribbon up at the top
 
-1151.46 --> 1153.18
+19:11.460 --> 19:13.180
 So doesn't lay flat
 
-1153.18 --> 1159.469
+19:13.180 --> 19:19.469
 Let's see what else is there though besides this well if I start here and just allow the ribbon
 
-1160.92 --> 1162.69
+19:20.920 --> 19:22.690
 to lay flat
 
-1162.69 --> 1166.3700000000001
+19:22.690 --> 19:26.370
 Huh I get a little curvy looking shape like this
 
-1166.429 --> 1172.759
+19:26.429 --> 19:32.759
 I say curvy looking because while to someone say at the base this path might seem to go up
 
-1173.19 --> 1179.78
+19:33.190 --> 19:39.779
 Slow down change direction and then fall down faster and faster since a ribbon on such a path is flat
 
-1179.94 --> 1183.53
+19:39.940 --> 19:43.529
 It's actually for inhabitants on the cones surface
 
-1184.11 --> 1188.059
+19:44.109 --> 19:48.58
 Perfectly straight if we trace the ribbons path on to the cone
 
-1188.059 --> 1195.139
+19:48.58 --> 19:55.138
 We can see this clearly because a cone can be flattened a straight line on a curved surface is called a geodesic
 
-1196.53 --> 1200.9289999999999
+19:56.529 --> 20:00.928
 Here is a geodesic on a sphere the Equator is one
 
-1201.51 --> 1205.369
+20:01.509 --> 20:05.368
 Here's another a line of latitude is not a geodesic
 
-1205.37 --> 1209.4789999999998
+20:05.369 --> 20:09.478
 It's not a straight line to see why let's try to follow it with the ribbon you
 
-1210.09 --> 1213.1399999999999
+20:10.89 --> 20:13.139
 Know what I have to keep kind of lifting it
 
-1213.33 --> 1217.4289999999999
+20:13.329 --> 20:17.428
 Yeah, see distances around the sphere becomes shorter as we go up
 
-1217.5 --> 1219.8
+20:17.500 --> 20:19.799
 So there's too much material on the ribbon up here
 
-1219.8 --> 1224.629
+20:19.799 --> 20:24.628
 and it leaves the surface this path contains turns and in order to turn a
 
-1224.76 --> 1227.749
+20:24.759 --> 20:27.749
 Force has to act on you if no forces
 
-1227.75 --> 1234.619
+20:27.750 --> 20:34.618
 Did this is the path you would take notice that the ribbon begins moving due east, but then falls
 
-1235.35 --> 1237.35
+20:35.349 --> 20:37.349
 south
 
-1237.39 --> 1239.39
+20:37.390 --> 20:39.390
 Falls
 
-1239.94 --> 1244.55
+20:39.940 --> 20:44.549
 Einstein realized that curvature could cause things to be seemingly attracted to one another
 
-1245.07 --> 1248.72
+20:45.69 --> 20:48.720
 Without needing to invent the existence of forces like gravity
 
-1249.09 --> 1256.1889999999999
+20:49.89 --> 20:56.188
 but attraction only happens if things move along the surface if they stay still they
 
-1256.59 --> 1262.37
+20:56.589 --> 21:02.369
 Well, they don't come together so for something at rest. How does falling begin?
 
-1262.37 --> 1267.9199999999998
+21:02.369 --> 21:07.919
 I mean the thing has to move in this direction, but it's at rest right well
 
-1267.99 --> 1268.49
+21:07.990 --> 21:08.490
 Yes
 
-1268.49 --> 1274.189
+21:08.490 --> 21:14.189
 But it's only at rest in space and that's not the whole story up down
 
-1274.65 --> 1282.469
+21:14.650 --> 21:22.469
 Forward backward and left-right are all you need to describe where an event occur but a complete description will also need to describe
 
-1283.32 --> 1288.559
+21:23.319 --> 21:28.558
 When together these four dimensions form the setting in which everything in our universe happens
 
-1290.28 --> 1291.66
+21:30.279 --> 21:31.660
 Space-time
 
-1291.66 --> 1298.7900000000002
+21:31.660 --> 21:38.790
 Since we can talk about a falling pencil using just one spatial dimension up and down we can use a piece of paper to model
 
-1299.01 --> 1303.109
+21:39.9 --> 21:43.108
 Space-time for it. Okay, so we've got up and down, but we have to add another
 
-1303.66 --> 1305.46
+21:43.660 --> 21:45.460
 direction the pencil moves in
 
-1305.46 --> 1306.3
+21:45.460 --> 21:46.299
 time
 
-1306.3 --> 1310.339
+21:46.299 --> 21:50.338
 Now if no forces act on the pencil it won't move through space
 
-1310.34 --> 1314.84
+21:50.339 --> 21:54.839
 It will only get older and as you can see if all it does is get older
 
-1314.84 --> 1320.03
+21:54.839 --> 22:00.29
 It won't fall if space-time was flat when I let go of the pencil
 
-1320.64 --> 1327.65
+22:00.640 --> 22:07.650
 it wouldn't go anywhere, but now let's allow the earth which is massive to manipulate space-time into say a
 
-1328.17 --> 1329.19
+22:08.170 --> 22:09.190
 cone
 
-1329.19 --> 1333.98
+22:09.190 --> 22:13.980
 Now with no forces acting on it every part of the pencil follows a straight line
 
-1334.08 --> 1340.61
+22:14.79 --> 22:20.609
 But on a cone as we saw earlier such a path will look like this it will fall
 
-1340.86 --> 1344.8999999999999
+22:20.859 --> 22:24.899
 This is because distances around the cone are shorter higher up
 
-1345.21 --> 1349.429
+22:25.210 --> 22:29.429
 Time runs faster further from a massive object, but to go straight
 
-1349.5 --> 1354.079
+22:29.500 --> 22:34.78
 Not turn every part of the pencil must cover an equal distance in space-time
 
-1354.63 --> 1356.19
+22:34.630 --> 22:36.190
 like this
 
-1356.19 --> 1363.29
+22:36.190 --> 22:43.289
 Only when the pencil hits the earth does the repulsion of their mutual electrons provide a force pushing the pencil off a geodesic
 
-1363.75 --> 1369.949
+22:43.750 --> 22:49.949
 For the earth time is a series of slices from this evolution the pencils force-free
 
-1370.259 --> 1377.869
+22:50.259 --> 22:57.868
 Geodesic is why it falls not a push or pull just the pencils natural tendency to follow a straight line
 
-1378.149 --> 1384.349
+22:58.148 --> 23:04.348
 Until something acts on it now. We only used one dimension of space and one of time because
 
-1384.87 --> 1391.639
+23:04.869 --> 23:11.638
 Visualizing our universes three of space and one of time would take us beyond the limits of what could be shown on paper or screens
 
-1392.1 --> 1393.389
+23:12.99 --> 23:13.388
 but math
 
-1393.389 --> 1395.1589999999999
+23:13.388 --> 23:15.158
 Can take us there
 
-1395.159 --> 1398.8090000000002
+23:15.159 --> 23:18.809
 General relativity allows us to calculate how much mass and energy
 
-1399.149 --> 1406.399
+23:19.148 --> 23:26.398
 Curved space-time and has been used to explain things that Newton's older theory of falling as the result of
 
-1406.649 --> 1414.378
+23:26.648 --> 23:34.377
 Forces couldn't like anomalies in the orbit of mercury which orbits nearest the Sun and is therefore most affected by the sun's grip on
 
-1414.84 --> 1421.309
+23:34.839 --> 23:41.308
 space-time many other experiments have confirmed general relativity's picture of the universe fitting the conclusion that
 
-1422.009 --> 1424.009
+23:42.9 --> 23:44.9
 There is no
 
-1424.62 --> 1426.62
+23:44.619 --> 23:46.619
 Gravity there's just
 
-1427.08 --> 1432.3999999999999
+23:47.79 --> 23:52.399
 Space-time its curvature and a us in it. As John Wheeler famously put it
 
-1432.96 --> 1439.76
+23:52.960 --> 23:59.759
 Space-time grips mass telling it how to move mass grips space-time telling it how to curve?
 
-1440.669 --> 1447.439
+24:00.669 --> 24:07.439
 Relative to the earth we don't move very fast even jet airplanes move negligibly close to the speed of light
 
-1447.6 --> 1450.589
+24:07.599 --> 24:10.588
 So relative to earth we move almost
 
-1450.96 --> 1457.549
+24:10.960 --> 24:17.548
 Exclusively through time as such we are more affected by the way time is curved by mass
 
-1457.74 --> 1459.659
+24:17.740 --> 24:19.659
 Than how space is curved?
 
-1459.659 --> 1464.8690000000001
+24:19.659 --> 24:24.869
 This has led many to claim that for the most part you feel as though you're being pushed into the ground
 
-1465.24 --> 1467.419
+24:25.240 --> 24:27.419
 Not because of a force called gravity
 
-1467.519 --> 1473.449
+24:27.519 --> 24:33.449
 But because time is moving faster for your head than for your feet down is
 
-1473.759 --> 1481.249
+24:33.759 --> 24:41.249
 Relative and always changing, but it exists because of and is always in the direction of slower time
 
-1481.98 --> 1485.839
+24:41.980 --> 24:45.838
 Bertrand Russell called this the law of cosmic laziness
 
-1486.69 --> 1493.759
+24:46.690 --> 24:53.759
 Everything is naturally steered towards where time is slowest we call this falling
 
-1494.429 --> 1496.429
+24:54.429 --> 24:56.429
 going down
 
-1496.53 --> 1499.849
+24:56.529 --> 24:59.848
 So you don't have to keep anything on the down-low
 
-1500.58 --> 1503.6889999999999
+25:00.579 --> 25:03.688
 time will take care of that for you and
 
-1504.75 --> 1506.49
+25:04.750 --> 25:06.490
 and as always
 
-1506.49 --> 1508.49
+25:06.490 --> 25:08.490
 Thanks for watching
 
-1519.19 --> 1524.3700000000001
+25:19.190 --> 25:24.370
 Remember that you can support Vsauce and Alzheimer's research by subscribing to the Vsauce
 
-1524.92 --> 1529.3200000000002
+25:24.920 --> 25:29.320
 curiosity box the current one comes with a code to get a free copy of universe sandbox 2
 
-1529.39 --> 1535.5900000000001
+25:29.390 --> 25:35.590
 Which is amazing and a whole host of other science toys and tools picked by myself Jake and Kevin
 
-1535.59 --> 1541.98
+25:35.589 --> 25:41.980
 I love it all so I hope to see you at brain candy live. We are coming to many many cities very soon
 
-1542.13 --> 1545.3400000000001
+25:42.130 --> 25:45.340
 Hopefully one near you by going to the show you can see Adam
 
-1545.34 --> 1551.22
+25:45.339 --> 25:51.220
 And I doing things that will you may not have seen us do before we also explore the science and common
 
-1551.77 --> 1554.49
+25:51.769 --> 25:54.490
 misconceptions behind all things
 
-1555.79 --> 1563.1589999999999
+25:55.789 --> 26:03.158
 Err. Maybe have said too much. Maybe not I hope to see you there and as always thanks for watching"
 `;
