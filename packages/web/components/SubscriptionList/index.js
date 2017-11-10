@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
 
 import styles from './styles'
 
-const sortByDate = (a, b) => a.publishedAt - b.publishedAt;
+const sortByDate = (a, b) => b.publishedAt - a.publishedAt;
 
 const buildSrcset = thumbnails => (
   thumbnails.reduce((prev, thumbnail) => {
@@ -44,6 +45,7 @@ const SubscriptionList = (props) => {
                 alt=""
               />
               <p>{video.title}</p>
+              <p>{distanceInWordsToNow(new Date(video.publishedAt))} ago</p>
             </a>
           </Link>
           <a

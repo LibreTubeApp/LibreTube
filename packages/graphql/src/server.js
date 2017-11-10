@@ -7,6 +7,7 @@ import ytdl from 'ytdl-core';
 
 import typeDefs from './graphql/schema';
 import resolvers from './graphql/resolvers';
+import startCron from './utils/cron';
 import parseXml from './utils/parseXml';
 
 const main = async () => {
@@ -62,4 +63,5 @@ const main = async () => {
   app.listen(PORT);
 };
 
+startCron();
 main();

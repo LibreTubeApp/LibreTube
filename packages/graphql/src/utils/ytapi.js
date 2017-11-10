@@ -1,7 +1,7 @@
 import 'isomorphic-fetch';
 import ytdl from 'ytdl-core';
 
-import { Video, Thumbnail } from '../graphql/connectors';
+import { Channel, Video, Thumbnail } from '../graphql/connectors';
 
 const prefix = 'https://www.googleapis.com/youtube/v3';
 const apiKey = 'AIzaSyDeFkttvdLyrHWrxoSS36rhT-YaYuJvfjc';
@@ -29,8 +29,17 @@ export const getChannelByName = async username => {
 };
 
 export const refreshVideosOnChannel = async channelId => {
+  const channel = await Channel.findById(channelId);
+
   const url = `${prefix}/search?part=snippet&order=date&type=video&key=${apiKey}&channelId=${channelId}`;
-  const response = await fetch(url);
+  console.log('channel.etag', channel.etag);
+  const response = await fetch(url, {
+    headers: {
+      'If-None-Match': channel.etag,
+    }
+  });
+
+  console.log('response', response);
 
   if (!response.ok) {
     throw await response.text();
@@ -40,10 +49,9 @@ export const refreshVideosOnChannel = async channelId => {
   data.items.forEach(async video => {
     const { etag, id, snippet } = video;
     const { publishedAt, title, description, thumbnails } = snippet;
-    console.log('thumbnails', thumbnails);
 
     // This does not await, and that is fine
-    await Video.create({
+    await Video.upsert({
       id: id.videoId,
       channelId,
       title,
@@ -54,9 +62,18 @@ export const refreshVideosOnChannel = async channelId => {
 
     for (const type in thumbnails) {
       const { url, width, height } = thumbnails[type];
-      Thumbnail.create({ type, url, width, height, videoId: id.videoId });
+      //Thumbnail.create({ type, url, width, height, videoId: id.videoId });
     }
   });
+};
+
+export const refreshAllVideos = async () => {
+  const channels = Channel.findAll();
+  const promises = channels.map(channel => (
+    refreshVideosOnChannel(channel.id)
+  ));
+
+  return Promise.all(promises);
 };
 
 export const getSubtitlesForVideo = async videoId => {
