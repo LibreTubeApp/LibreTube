@@ -11,11 +11,15 @@ if (!process.browser) {
 }
 
 function create (initialState) {
+  // Server URL must be absolute
+  let uri = process.env.NODE_ENV === 'production'
+    ? 'TODO'
+    : 'http://localhost:3000/graphql/';
   return new ApolloClient({
     connectToDevTools: process.browser,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
-      uri: 'http://graphql:4000/graphql', // Server URL (must be absolute)
+      uri,
       opts: {
         method: 'POST',
         credentials: 'same-origin' // Additional fetch() options like `credentials` or `headers`

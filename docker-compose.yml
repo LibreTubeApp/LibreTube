@@ -34,6 +34,9 @@ services:
     build: packages/dev-proxy
     ports:
       - "3000:3000"
+    depends_on:
+      - graphql
+      - web
     restart: always
 
 volumes:

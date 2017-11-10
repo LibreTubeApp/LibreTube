@@ -25,7 +25,7 @@ const main = async () => {
   app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
 
   app.use('/graphql-explorer', graphiqlExpress({
-    endpointURL: '/graphql',
+    endpointURL: '/graphql/',
   }));
 
   app.use('/videoplayback', (req, res) => {

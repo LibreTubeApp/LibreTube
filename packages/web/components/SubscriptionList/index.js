@@ -4,6 +4,8 @@ import gql from 'graphql-tag'
 
 import styles from './styles'
 
+const sortByDate = (a, b) => a.publishedAt - b.publishedAt;
+
 const buildSrcset = thumbnails => (
   thumbnails.reduce((prev, thumbnail) => {
     const src = `${thumbnail.url} ${thumbnail.width}w`;
@@ -26,15 +28,14 @@ const SubscriptionList = (props) => {
   return (
     <div className="subscription-list">
       <style jsx>{styles}</style>
-      {videos.map(video => (
-        <div>
+      {[...videos].sort(sortByDate).map(video => (
+        <div key={video.id}>
           <Link
             href={{
               pathname: '/watch',
               query: { v: video.id }
             }}
             prefetch
-            key={video.id}
           >
             <a>
               <img
@@ -63,6 +64,7 @@ const allSubscriptions = gql`
     videos {
       id
       title
+      publishedAt
       channel {
         id
         username
