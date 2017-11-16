@@ -64,7 +64,10 @@ export default ComposedComponent => {
 
     constructor (props) {
       super(props)
-      this.apollo = initApollo(this.props.serverState.apollo.data)
+      const initialState = this.props.serverState.apollo
+        ? this.props.serverState.apollo.data
+        : null;
+      this.apollo = initApollo(initialState)
     }
 
     render () {

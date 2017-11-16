@@ -1,11 +1,13 @@
 import { GraphQLScalarType } from 'graphql';
 import { Kind } from 'graphql/language';
-import { Video, Channel, Thumbnail } from './connectors';
+
+import { User, Video, Channel, Thumbnail, addUser, verifyLogin } from './connectors';
 import { getChannelByName, refreshVideosOnChannel, getSubtitlesForVideo } from '../utils/ytapi';
 
 export default {
   Query: {
-    videos(_, args) {
+    videos(_, args, context) {
+      console.log('context', context);
       return Video.findAll({ where: args });
     },
     video(_, args) {
@@ -16,6 +18,21 @@ export default {
     },
   },
   Mutation: {
+    async loginUser(_, args, context) {
+      console.log('context', context);
+      if (await verifyLogin(args)) {
+        context.user = await User.findOne({
+          where: {
+            username: args.username,
+          },
+        });
+        return true;
+      }
+      return false;
+    },
+    addUser(_, args) {
+      return addUser(args);
+    },
     async addChannel(_, args) {
       const matches = await Channel.findAndCount({ where: args });
       if (matches.count) {

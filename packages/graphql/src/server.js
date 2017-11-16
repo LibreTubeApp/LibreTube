@@ -19,15 +19,13 @@ const main = async () => {
   const PORT = 4000;
   const app = express();
 
-  if (process.env.NODE_ENV !== 'production') {
-    app.use(require('cors')())
-  }
-
   app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
 
-  app.use('/graphql-explorer', graphiqlExpress({
-    endpointURL: '/graphql/',
-  }));
+  if (process.env.NODE_ENV !== 'production') {
+    app.use('/graphql-explorer', graphiqlExpress({
+      endpointURL: '/graphql/',
+    }));
+  }
 
   app.use('/videoplayback', (req, res) => {
     const { v: videoId } = req.query;

@@ -1,4 +1,5 @@
 import Sequelize from 'sequelize';
+import argon from 'argon2';
 
 const db = new Sequelize(
   process.env.DBDATABASE,
@@ -25,6 +26,13 @@ db.authenticate()
     console.error('Unable to connect to the database:', error);
     throw error;
   });
+
+export const User = db.define('user', {
+  username: Sequelize.STRING,
+  password: Sequelize.STRING,
+  active: Sequelize.BOOLEAN,
+  email: Sequelize.STRING,
+});
 
 export const Channel = db.define('channel', {
   id: { type: Sequelize.STRING, primaryKey: true },
@@ -57,3 +65,36 @@ Video.hasMany(Thumbnail);
 
 db.sync();
 
+export const addUser = async args => {
+  const matches = await User.findAndCount({
+    where: {
+      username: args.user.username,
+    },
+  });
+
+  if (matches.count) {
+    throw `A user with the username ${args.user.username} already exists`;
+  }
+
+  // Some minor extra hardening
+  const hashOptions = {
+    timeCost: 20,
+    memoryCost: 15,
+  };
+  const hash = await argon.hash(args.user.password, hashOptions);
+  const created = await User.create({
+    ...args.user,
+    password: hash,
+  });
+  return created.dataValues;
+};
+
+export const verifyLogin = async args => {
+  const user = await User.findOne({
+    where: {
+      username: args.username,
+    },
+  });
+
+  return await argon.verify(user.password, args.password);
+};

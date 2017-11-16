@@ -1,6 +1,18 @@
 export default [`
 scalar Date
 
+# A registered user
+type User {
+  # The internal ID of this user
+  id: ID!
+  # The user's chosen username
+  username: String!
+  # If this user is marked as active - inactive users cannot login
+  active: Boolean
+  # The user's email
+  email: String
+}
+
 # A YouTube Video
 type Video {
   # The internal ID of this video
@@ -70,10 +82,24 @@ type Query {
   videos: [Video]!
 }
 
+# The input required to create a user
+input UserInput {
+  # The user's chosen username
+  username: String!
+  # The password to be used for login
+  password: String!
+  # An email the user can be contacted on
+  email: String
+}
+
 # The root mutation in which all mutations are held
 type Mutation {
   # Adds a channel into the channel set
   addChannel(username: String!): Channel
+  # Adds a user to the database of registered users
+  addUser(user: UserInput!): User
+  # Log in a user and set a session token
+  loginUser(username: String!, password: String!): Boolean
 }
 
 schema {
