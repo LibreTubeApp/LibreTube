@@ -1,4 +1,5 @@
 import 'babel-polyfill';
+import { parse } from 'url';
 import express from 'express'
 import next from 'next';
 import bodyParser from 'body-parser';
@@ -8,6 +9,7 @@ import ytdl from 'ytdl-core';
 
 import typeDefs from './server/graphql/schema';
 import resolvers from './server/graphql/resolvers';
+import parseXml from './server/utils/parseXml';
 import startCron from './server/utils/cron';
 
 const port = parseInt(process.env.PORT, 10) || 3000
@@ -61,8 +63,9 @@ app.prepare().then(() => {
     res.type('text/vtt').send(payload);
   });
 
-  server.use('*', (req, res) => {
-    return handle(req, res);
+  server.get('*', (req, res) => {
+    const parsedUrl = parse(req.url, true);
+    return handle(req, res, parsedUrl);
   })
 
   server.listen(port, (err) => {
