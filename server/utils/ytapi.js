@@ -15,6 +15,7 @@ export const getChannelByName = async username => {
   }
 
   const data = await response.json();
+  console.log('data', data);
   const { id, etag, snippet } = data.items[0];
   const { title, description, publishedAt, thumbnails } = snippet;
 

@@ -11,10 +11,12 @@ services:
       POSTGRES_USER: nextube
       POSTGRES_DB: nextube
 
-  graphql:
-    build: packages/graphql
+  web:
+    build: .
     volumes:
-      - ./packages/graphql:/code:z
+      - .:/code:z
+    ports:
+      - "3000:3000"
     depends_on:
       - db
     restart: always
@@ -23,21 +25,6 @@ services:
       DBUSER: nextube
       DBDATABASE: nextube
       DBPASSWORD: hunter12
-
-  web:
-    build: packages/web
-    volumes:
-      - ./packages/web:/code:z
-    restart: always
-
-  proxy:
-    build: packages/dev-proxy
-    ports:
-      - "3000:3000"
-    depends_on:
-      - graphql
-      - web
-    restart: always
 
 volumes:
     db_data:
