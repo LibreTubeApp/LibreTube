@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "nodemon server.js -w server.js -w server -w lib -w components --exec babel-node",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "test": "jest"
   },
   "dependencies": {
     "apollo-cache-inmemory": "^1.1.1",
@@ -42,6 +43,7 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-2": "^6.24.1",
+    "jest": "^21.2.1",
     "nodemon": "^1.12.1"
   }
 }

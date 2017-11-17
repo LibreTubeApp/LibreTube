@@ -1,7 +1,7 @@
 import leftPad from 'left-pad';
 import xml2js from 'xml2js';
 
-const pad = input => leftPad(input, 2, 0);
+const pad = (input, padding = 2) => leftPad(input, padding, 0);
 
 export const secondsToHoursAndSeconds = time => {
   const minutes = Math.floor(time / 60);
@@ -12,10 +12,10 @@ export const secondsToHoursAndSeconds = time => {
     const hours = Math.floor(minutes);
     const minutes = minutes - hours * 60;
 
-    return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}.${milliseconds}`;
+    return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}.${pad(milliseconds, 3)}`;
   }
 
-  return `${pad(minutes)}:${pad(seconds)}.${milliseconds}`;
+  return `${pad(minutes)}:${pad(seconds)}.${pad(milliseconds, 3)}`;
 };
 
 const convertToVTT = json => (
