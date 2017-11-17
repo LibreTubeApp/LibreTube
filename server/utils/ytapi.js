@@ -15,7 +15,6 @@ export const getChannelByName = async username => {
   }
 
   const data = await response.json();
-  console.log('data', data);
   const { id, etag, snippet } = data.items[0];
   const { title, description, publishedAt, thumbnails } = snippet;
 
@@ -33,14 +32,11 @@ export const refreshVideosOnChannel = async channelId => {
   const channel = await Channel.findById(channelId);
 
   const url = `${prefix}/search?part=snippet&order=date&type=video&key=${apiKey}&channelId=${channelId}`;
-  console.log('channel.etag', channel.etag);
   const response = await fetch(url, {
     headers: {
       'If-None-Match': channel.etag,
     }
   });
-
-  console.log('response', response);
 
   if (!response.ok) {
     throw await response.text();
@@ -48,33 +44,38 @@ export const refreshVideosOnChannel = async channelId => {
 
   const data = await response.json();
   data.items.forEach(async video => {
-    const { etag, id, snippet } = video;
-    const { publishedAt, title, description, thumbnails } = snippet;
+    try {
+      const { etag, id, snippet } = video;
+      const { publishedAt, title, description, thumbnails } = snippet;
 
-    // This does not await, and that is fine
-    await Video.upsert({
-      id: id.videoId,
-      channelId,
-      title,
-      description,
-      publishedAt,
-      etag,
-    });
+      await Video.insertOrUpdate({
+        id: id.videoId,
+        channelId,
+        title,
+        description,
+        publishedAt,
+        etag,
+      });
 
-    for (const type in thumbnails) {
-      const { url, width, height } = thumbnails[type];
-      //Thumbnail.create({ type, url, width, height, videoId: id.videoId });
+      for (const type in thumbnails) {
+        const { url, width, height } = thumbnails[type];
+        Thumbnail.create({ type, url, width, height, videoId: id.videoId });
+      }
+    } catch (error) {
+      console.log(`And error occured refreshing videos: ${error}`);
     }
   });
 };
 
-export const refreshAllVideos = async () => {
+export const refreshAllVideos = () => {
   const channels = Channel.findAll();
   const promises = channels.map(channel => (
     refreshVideosOnChannel(channel.id)
   ));
 
-  return Promise.all(promises);
+  return Promise.all(promises).catch(error => {
+    console.log(`refreshAllVideos failed: ${error}`);
+  });
 };
 
 export const getSubtitlesForVideo = async videoId => {
