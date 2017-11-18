@@ -21,7 +21,7 @@ Create an API key for consuming API data, then register it in the app. If
 worried about privacy, you can create a throwaway google account for the
 purpose of consuming from the YouTube API.
 
-### Privacy
+## Privacy
 
 > I need to create an account to get a YouTube API key? But how is that
 > different from having a throwaway YouTube account?

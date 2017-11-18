@@ -35,6 +35,9 @@ app.prepare().then(() => {
   server.use('/videoplayback', (req, res) => {
     const { v: videoId } = req.query;
 
+    // Default timeout is 5 minutes, which is too short for videos
+    req.setTimeout(10 * 60 * 60 * 1000);
+
     if (!ytdl.validateID(videoId)) {
       res.status(400).send({
         error: 'VALIDATION_ERROR',
