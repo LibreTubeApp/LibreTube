@@ -2,27 +2,19 @@ version: '3'
 
 services:
   db:
-    image: postgres:10-alpine
-    volumes:
-      - db_data:/var/lib/postgresql
+    restart: always
     environment:
       POSTGRES_PASSWORD: hunter12
       POSTGRES_USER: nextube
       POSTGRES_DB: nextube
 
   web:
-    build: .
-    volumes:
-      - .:/code:z
+    restart: always
     ports:
-      - "3000:3000"
-    depends_on:
-      - db
+      - "80:3000"
     environment:
+      NODE_ENV: 'true'
       DBHOST: db
       DBUSER: nextube
       DBDATABASE: nextube
       DBPASSWORD: hunter12
-
-volumes:
-    db_data:

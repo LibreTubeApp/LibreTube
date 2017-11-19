@@ -59,7 +59,7 @@ First we check the code out from version control.
 
     git clone https://gitlab.henriksen.is/espen/libretube.git
     cd libretube
-    
+
 Next, we install the required software.
 
 - [Install yarn][install-yarn]
@@ -70,10 +70,13 @@ Almost there - now we install the project's dependant libaries.
 
     yarn
 
-Finally we run the server, which will run it on facing on port 3000.
+Finally we run the server, which will run it on facing on port 80. Edit
+`docker-compose.prod.yml` if you need to change any of this.
 
-    docker-compose up
+    docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
+> Note: Many production optimizations are currently not enabled, so it will be
+> slower than it can potentially be
 
 ### Without docker
 
