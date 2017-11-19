@@ -51,6 +51,32 @@ users, which again makes it very hard to build a profile on you.
 
 ## Setup
 
+The easy way is to use docker-compose to automatically set up and configure
+docker containers for you. If you set up an "ubuntu docker" one-click app on
+digitalocean, for example, you can follow the following steps:
+
+First we check the code out from version control.
+
+    git clone https://gitlab.henriksen.is/espen/libretube.git
+    cd libretube
+    
+Next, we install the required software.
+
+- [Install yarn][install-yarn]
+- [Install docker-compose][install-compose]
+- [Node.js 8][install-node]
+
+Almost there - now we install the project's dependant libaries.
+
+    yarn
+
+Finally we run the server, which will run it on facing on port 3000.
+
+    docker-compose up
+
+
+### Without docker
+
 The GraphQL server assumes a PGSQL database that is accessible. Configure the
 settings using the environment variables `DBHOST`, `DBUSER`, `DBDATABASE` and
 `DBPASSWORD`.
@@ -61,3 +87,6 @@ settings using the environment variables `DBHOST`, `DBUSER`, `DBDATABASE` and
 
 This is mostly because I don't want to get in trouble with the big G..
 
+[install-yarn]: https://yarnpkg.com/en/docs/install#linux-tab
+[install-compose]: https://docs.docker.com/compose/install/
+[install-node]: https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
