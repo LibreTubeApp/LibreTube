@@ -24,4 +24,9 @@ export default css`
     font-size: 24px;
     text-align: center;
   }
+
+  .details pre {
+    white-space: pre-line;
+    font-family: serif;
+  }
 `;

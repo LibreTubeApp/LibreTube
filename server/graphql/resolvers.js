@@ -1,8 +1,19 @@
 import { GraphQLScalarType } from 'graphql';
 import { Kind } from 'graphql/language';
-
-import { User, Video, Channel, Thumbnail, addUser, verifyLogin } from './connectors';
-import { getChannelByName, refreshVideosOnChannel, getSubtitlesForVideo } from '../utils/ytapi';
+import {
+  User,
+  Video,
+  Channel,
+  Thumbnail,
+  addUser,
+  verifyLogin
+} from './connectors';
+import {
+  getChannelByName,
+  refreshVideosOnChannel,
+  getDetailsForVideo,
+  getSubtitlesForVideo
+} from '../utils/ytapi';
 
 export default {
   Query: {
@@ -48,6 +59,9 @@ export default {
   Video: {
     channel(obj) {
       return Channel.findById(obj.dataValues.channelId);
+    },
+    details(obj) {
+      return getDetailsForVideo(obj.dataValues.id);
     },
     thumbnails(obj) {
       return Thumbnail.findAll({

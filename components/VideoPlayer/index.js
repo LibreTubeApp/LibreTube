@@ -2,6 +2,16 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import styles from './styles';
 
+const printTime = seconds => {
+  if (seconds <= 60) {
+    return `${seconds} seconds`;
+  }
+
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = parseInt(seconds - minutes * 60, 10);
+  return `${minutes} minutes ${remainingSeconds} seconds`;
+};
+
 const VideoPlayer = ({ videoId, data }) => {
   return (
     <div>
@@ -27,18 +37,33 @@ const VideoPlayer = ({ videoId, data }) => {
           </video>
         </div>
       </div>
-      <article>
-        {data.video && data.video.description}
-      </article>
+      <div className="details">
+        {data.video && data.video.details && (
+          <article>
+            <h1>{data.video.title}</h1>
+            <p>Views: {data.video.details.view_count}</p>
+            <p>Length: {printTime(data.video.details.length_seconds)}</p>
+            <p>
+              <pre>
+                {data.video.details.description}
+              </pre>
+            </p>
+          </article>
+        )}
+      </div>
     </div>
   );
 }
 
 const videoDetails = gql`
-  query videoDetails($id: ID!) {
+  query VideoPlayerQuery($id: ID!) {
     video(id: $id) {
       title
-      description
+      details {
+        view_count
+        length_seconds
+        description
+      }
       subtitles {
         name
         languageCode

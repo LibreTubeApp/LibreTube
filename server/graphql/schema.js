@@ -27,10 +27,30 @@ type Video {
   etag: ID
   # The channel this video is posted by
   channel: Channel!
+  # More detailed information fetched on demand from youtube
+  details: VideoDetails
   # A set of thumbnails illustrating this video
   thumbnails: [Thumbnail]
   # Subtitles in different languages
   subtitles: [Caption]
+}
+
+# The raw video details data fetched with ytdl-core
+type VideoDetails {
+  # The title
+  title: String
+  # The full unabbreaviated description
+  description: String
+  # Any keywords placed on this video
+  keywords: [String]
+  # How any views this video currently has
+  view_count: String
+  # The length of the video in seconds
+  length_seconds: String
+  # The rating of the video. A floating point number between 0 and 5
+  avg_rating: String
+  # The YouTube URL of this video
+  video_url: String
 }
 
 # A subtitle track

@@ -78,6 +78,14 @@ export const refreshAllVideos = () => {
   });
 };
 
+export const getDetailsForVideo = async videoId => {
+  try {
+    return await ytdl.getInfo(`https://www.youtube.com/watch?v=${videoId}`);
+  } catch (error) {
+    console.error(`Failed to fetch details for video ${videoId}: ${error}`);
+  }
+};
+
 export const getSubtitlesForVideo = async videoId => {
   try {
     const info = await ytdl.getInfo(`https://www.youtube.com/watch?v=${videoId}`);
@@ -95,6 +103,6 @@ export const getSubtitlesForVideo = async videoId => {
       isTranslatable: track.isTranslatable,
     }));
   } catch (error) {
-    throw error;
+    console.error(`Failed to fetch subtitles for video ${videoId}: ${error}`);
   }
 };
