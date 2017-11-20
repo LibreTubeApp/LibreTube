@@ -13,7 +13,7 @@ if (!process.browser) {
 function create (initialState) {
   // Server URL must be absolute
   let uri = process.env.EXTERNAL_URL
-    ? `${EXTERNAL_URL}/graphql`
+    ? `${process.env.EXTERNAL_URL}/graphql`
     : 'http://localhost:3000/graphql/';
   return new ApolloClient({
     connectToDevTools: process.browser,
@@ -22,7 +22,7 @@ function create (initialState) {
       uri,
       opts: {
         method: 'POST',
-        credentials: 'same-origin' // Additional fetch() options like `credentials` or `headers`
+        credentials: 'same-origin',
       }
     }),
     cache: new InMemoryCache().restore(initialState || {}),
