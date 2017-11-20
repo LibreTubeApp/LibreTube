@@ -12,8 +12,8 @@ if (!process.browser) {
 
 function create (initialState) {
   // Server URL must be absolute
-  let uri = process.env.NODE_ENV === 'production'
-    ? 'TODO'
+  let uri = process.env.EXTERNAL_URL
+    ? `${EXTERNAL_URL}/graphql`
     : 'http://localhost:3000/graphql/';
   return new ApolloClient({
     connectToDevTools: process.browser,

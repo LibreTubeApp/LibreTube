@@ -1,4 +1,4 @@
-import withData from '../lib/withData'
+import withData from '../utils/withData'
 import Head from '../components/Head';
 import VideoPlayer from '../components/VideoPlayer';
 

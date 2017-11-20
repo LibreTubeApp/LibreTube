@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ "$NODE_ENV" == "production" ]; then
+  echo "Running in production mode"
+  npm run start
+else
+  echo "Running in dev mode"
+  npm run dev
+fi
+

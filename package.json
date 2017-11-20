@@ -1,14 +1,16 @@
 {
   "name": "nextube",
   "version": "0.1.0",
-  "main": "index.js",
+  "main": "dist/main.js",
   "repository": "git@gitlab.henriksen.is:espen/nextube.git",
   "author": "Espen Henriksen",
   "license": "GPL-3.0",
   "scripts": {
-    "dev": "nodemon server.js -w server.js -w server -w lib -w components --exec babel-node",
-    "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "dev": "nodemon src/server.js -w src --exec babel-node",
+    "build:next": "next build",
+    "build:js": "babel src -d dist",
+    "build": "npm run build:next && npm run build:js",
+    "start": "NODE_ENV=production node dist/server.js",
     "test": "jest"
   },
   "dependencies": {
