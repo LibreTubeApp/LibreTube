@@ -15,11 +15,10 @@ export default css`
 
   .input-group input {
     flex: 1;
-    padding: 10px;
   }
 
   .input-group button {
-    width: 80px;
+    width: 90px;
     margin-left: -1px;
   }
 `;

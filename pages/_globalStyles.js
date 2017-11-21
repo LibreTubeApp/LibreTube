@@ -85,9 +85,14 @@ export default css`
     --quinary-color: #fff;
 
     --shadow-color: #292f3680;
+    --error-color: #ffbaba;
+    --error-color-dark: #d8000c;
+    --disabled-color: #ccc;
+    --disabled-color-dark: #aaa;
 
     --regular-font: 'open_sansregular', Arial, sans-serif;
     --bold-font: 'open_sansbold', Arial, sans-serif;
+    --italic-bond-font: 'open_sansbold_italic', Arial, sans-serif;
   }
 
   * {
@@ -99,17 +104,27 @@ export default css`
   }
 
   input[type="text"],
+  input[type="password"],
+  input[type="email"],
   input[type="search"] {
+    padding: 10px;
     border-radius: 0;
     border: 1px solid var(--secondary-color);
     display: block;
   }
 
   button {
+    padding: 10px 30px;
     border-radius: 0;
     border: 1px solid var(--secondary-color);
     cursor: pointer;
     font-family: var(--bold-font);
+  }
+
+  .fixed-width {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
   }
 
   .primary-btn {
@@ -126,6 +141,15 @@ export default css`
     background-color: var(--primary-color-light-dark);
     border-top: 3px solid var(--primary-color-medium-dark);
     border-bottom: none;
+  }
+
+  .primary-btn:disabled {
+    background-color: var(--disabled-color);
+    border-top: 1px solid var(--secondary-color);
+    border-bottom: 3px solid var(--disabled-color-dark);;
+    font-family: var(--bold-italic-font);
+    font-style: italic;
+    cursor: not-allowed;
   }
 
   .sr-only {

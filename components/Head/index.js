@@ -7,7 +7,7 @@ export const HeadComponent = (props) => [
   <Head key="1">
     <title>{props.title}</title>
   </Head>,
-  <header>
+  <header key="2">
     <style jsx>{headerStyles}</style>
     <Link href="/">
       <a>

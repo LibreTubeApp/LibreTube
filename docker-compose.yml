@@ -7,8 +7,8 @@ services:
       - db_data:/var/lib/postgresql
     environment:
       POSTGRES_PASSWORD: hunter12
-      POSTGRES_USER: nextube
-      POSTGRES_DB: nextube
+      POSTGRES_USER: libretube
+      POSTGRES_DB: libretube
 
   web:
     build: .
@@ -20,8 +20,8 @@ services:
       - db
     environment:
       DBHOST: db
-      DBUSER: nextube
-      DBDATABASE: nextube
+      DBUSER: libretube
+      DBDATABASE: libretube
       DBPASSWORD: hunter12
 
 volumes:
