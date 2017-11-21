@@ -15,6 +15,16 @@ export default class CustomDocument extends Document {
           <meta httpEquiv="x-ua-compatible" content="ie=edge" key="xUaCompat" />
           <meta name="viewport" content="width=device-width, initial-scale=1" key="viewport" />
           <style key="1" jsx global>{`
+            :root {
+              --primary-color: #f00;
+              --secondary-color: #071e22;
+              --tertiary-color: #292f36;
+              --quaternary-color: #3e78b2;
+              --quinary-color: #fff;
+
+              --shadow-color: #292f3680;
+            }
+
             body {
               margin: 0;
             }

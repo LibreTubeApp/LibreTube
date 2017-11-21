@@ -11,7 +11,11 @@ export const HeadComponent = (props) => [
     <style jsx>{headerStyles}</style>
     <Link href="/">
       <a>
-        <img src="/static/logo.png" className="logo" alt="logo" />
+        <img
+          src="/static/logo.png"
+          className="logo"
+          alt="Red flag with black play button - the LibreTube logo"
+        />
         <span className="sr-only">Go to the home page</span>
       </a>
     </Link>
