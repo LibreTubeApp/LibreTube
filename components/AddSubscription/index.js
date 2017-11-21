@@ -26,15 +26,16 @@ class AddSubscription extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <style jsx>{styles}</style>
-        <label>
+        <label htmlFor="AddSubscription">
           New subscription
           <div className="input-group">
             <input
               name="username"
               type="search"
+              id="AddSubscription"
               onChange={this.handleChange}
             />
-            <button>Add</button>
+            <button className="primary-btn">Add</button>
           </div>
         </label>
       </form>

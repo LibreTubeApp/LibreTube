@@ -77,16 +77,21 @@ export default css`
 
   :root {
     --primary-color: #f00;
+    --primary-color-light-dark: #d00;
+    --primary-color-medium-dark: #a00;
     --secondary-color: #071e22;
     --tertiary-color: #292f36;
     --quaternary-color: #3e78b2;
     --quinary-color: #fff;
 
     --shadow-color: #292f3680;
+
+    --regular-font: 'open_sansregular', Arial, sans-serif;
+    --bold-font: 'open_sansbold', Arial, sans-serif;
   }
 
   * {
-    font-family: 'open_sansregular', Arial, sans-serif;
+    font-family: var(--regular-font);
   }
 
   body {
@@ -98,6 +103,29 @@ export default css`
     border-radius: 0;
     border: 1px solid var(--secondary-color);
     display: block;
+  }
+
+  button {
+    border-radius: 0;
+    border: 1px solid var(--secondary-color);
+    cursor: pointer;
+    font-family: var(--bold-font);
+  }
+
+  .primary-btn {
+    background-color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color-medium-dark);
+    color: var(--secondary-color);
+  }
+
+  .primary-btn:hover {
+    background-color: var(--primary-color-light-dark);
+  }
+
+  .primary-btn:active {
+    background-color: var(--primary-color-light-dark);
+    border-top: 3px solid var(--primary-color-medium-dark);
+    border-bottom: none;
   }
 
   .sr-only {

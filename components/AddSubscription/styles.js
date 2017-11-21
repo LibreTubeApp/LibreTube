@@ -20,5 +20,6 @@ export default css`
 
   .input-group button {
     width: 80px;
+    margin-left: -1px;
   }
 `;
