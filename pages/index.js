@@ -5,7 +5,7 @@ import SubscriptionList from '../components/SubscriptionList';
 
 export default withData(props => (
   <div>
-    <Head title="Subscriptions - Webtube" />
+    <Head title="Subscriptions - Libretube" />
     <main>
       <AddSubscription />
       <SubscriptionList />

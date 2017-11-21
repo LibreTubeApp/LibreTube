@@ -1,13 +1,22 @@
 import Head from 'next/head';
-import globalStyles from './styles';
+import Link from 'next/link';
 
-export const HeadComponent = (props) =>
-  <Head>
+import headerStyles from './styles';
+
+export const HeadComponent = (props) => [
+  <Head key="1">
     <title>{props.title}</title>
-    <meta httpEquiv="x-ua-compatible" content="ie=edge" key="xUaCompat" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" key="viewport" />
-    <style key="2" jsx global>{globalStyles}</style>
-  </Head>;
+  </Head>,
+  <header>
+    <style jsx>{headerStyles}</style>
+    <Link href="/">
+      <a>
+        <img src="/static/logo.png" className="logo" alt="logo" />
+        <span className="sr-only">Go to the home page</span>
+      </a>
+    </Link>
+  </header>,
+];
 
 HeadComponent.defaultProps = {
   title: 'Webtube',

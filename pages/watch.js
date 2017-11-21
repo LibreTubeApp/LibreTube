@@ -7,7 +7,7 @@ export default withData((props) => {
 
   return (
     <main>
-      <Head title="Video player - Webtube" />
+      <Head title="Video player - Libretube" />
       <VideoPlayer videoId={videoId} />
     </main>
   );
