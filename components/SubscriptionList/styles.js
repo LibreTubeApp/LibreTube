@@ -10,6 +10,20 @@ export default css`
     grid-gap: 40px;
   }
 
+  .title {
+    font-weight: bold;
+  }
+
+  a {
+    color: var(--tertiary-color);
+    text-decoration: none;
+  }
+
+  p {
+    margin-top: 5px;
+    margin-bottom: 0;
+  }
+
   img {
     width: 100%;
   }

@@ -44,7 +44,7 @@ const SubscriptionList = (props) => {
                 sizes="(min-width: 600px) 480px, 50vw"
                 alt=""
               />
-              <p>{video.title}</p>
+              <p className="title">{video.title}</p>
               <p>{distanceInWordsToNow(new Date(video.publishedAt))} ago</p>
             </a>
           </Link>

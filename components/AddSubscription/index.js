@@ -1,6 +1,8 @@
-import React from 'react'
-import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
+import React from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+
+import styles from './styles';
 
 class AddSubscription extends React.Component {
   state = {};
@@ -23,17 +25,22 @@ class AddSubscription extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+        <style jsx>{styles}</style>
         <label>
           New subscription
-          <input name="username" onChange={this.handleChange} />
+          <div className="input-group">
+            <input
+              name="username"
+              type="search"
+              onChange={this.handleChange}
+            />
+            <button>Add</button>
+          </div>
         </label>
-        <button>
-          Add
-        </button>
       </form>
     );
   }
-};
+}
 
 const addSubscription = gql`
   mutation addSubscription($username: String!) {
@@ -41,6 +48,6 @@ const addSubscription = gql`
       id
     }
   }
-`
+`;
 
-export default graphql(addSubscription)(AddSubscription)
+export default graphql(addSubscription)(AddSubscription);

@@ -7,6 +7,7 @@ export default withData(props => (
   <div>
     <Head title="Subscriptions - Libretube" />
     <main>
+      <h1>Your subscriptions</h1>
       <AddSubscription />
       <SubscriptionList />
     </main>
