@@ -15,8 +15,8 @@ const printTime = seconds => {
 const VideoPlayer = ({ videoId, data }) => {
   return (
     <div>
+      <style jsx>{styles}</style>
       <div className="outer-wrapper">
-        <style jsx>{styles}</style>
         <div className="video-wrapper">
           <video
             className="video"
@@ -37,12 +37,14 @@ const VideoPlayer = ({ videoId, data }) => {
           </video>
         </div>
       </div>
-      <div className="details">
+      <div className="details fixed-width">
         {data.video && data.video.details && (
           <article>
             <h1>{data.video.title}</h1>
-            <p>Views: {data.video.details.view_count}</p>
-            <p>Length: {printTime(data.video.details.length_seconds)}</p>
+            <p className="metadata">
+              <span className="views">Views: {data.video.details.view_count}</span>
+              <span className="length">Length: {printTime(data.video.details.length_seconds)}</span>
+            </p>
             <p>
               <pre>
                 {data.video.details.description}

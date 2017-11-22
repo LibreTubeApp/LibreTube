@@ -25,8 +25,21 @@ export default css`
     text-align: center;
   }
 
+  .metadata {
+    display: flex;
+    font-weight: bold;
+  }
+
+  .views,
+  .length {
+    flex: 1;
+  }
+
+  .length {
+    text-align: right;
+  }
+
   .details pre {
     white-space: pre-line;
-    font-family: serif;
   }
 `;
