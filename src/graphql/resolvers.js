@@ -18,7 +18,6 @@ import {
 export default {
   Query: {
     videos(_, args, context) {
-      console.log('context', context);
       return Video.findAll({ where: args });
     },
     video(_, args) {
@@ -29,18 +28,6 @@ export default {
     },
   },
   Mutation: {
-    async loginUser(_, args, context) {
-      console.log('context', context);
-      if (await verifyLogin(args)) {
-        context.user = await User.findOne({
-          where: {
-            username: args.username,
-          },
-        });
-        return true;
-      }
-      return false;
-    },
     addUser(_, args) {
       return addUser(args);
     },

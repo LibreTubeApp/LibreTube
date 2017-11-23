@@ -5,12 +5,15 @@ import session from 'express-session';
 import next from 'next';
 import passport from 'passport';
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 import ytdl from 'ytdl-core';
+import { ensureLoggedIn } from 'connect-ensure-login';
 
 import typeDefs from './graphql/schema';
 import resolvers from './graphql/resolvers';
+import { User } from './graphql/connectors';
 import parseXml from './utils/parseXml';
 import startCron from './utils/cron';
 import setupPassport from './utils/setupPassport';
@@ -27,23 +30,33 @@ startCron();
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
 // Middlewares
-server.use(session({ secret: 'dogs' }));
+server.use(session({
+  secret: 'dogs',
+  resave: false,
+  saveUninitialized: false,
+}));
+server.use(cookieParser());
 server.use(bodyParser.json());
 server.use(passport.initialize());
 server.use(passport.session());
 
 app.prepare().then(() => {
-  server.use('/graphql', graphqlExpress({ schema }));
+  server.use('/graphql', ensureLoggedIn(), graphqlExpress({ schema }));
 
-  server.use('/graphql-explorer', graphiqlExpress({
+  server.use('/graphql-explorer', ensureLoggedIn(), graphiqlExpress({
     endpointURL: '/graphql',
   }));
 
   server.post('/login', passport.authenticate('local'), (req, res) => {
-    res.sendStatus(200);
+    res.sendStatus(204);
   });
 
-  server.use('/videoplayback', (req, res) => {
+  server.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+  });
+
+  server.use('/videoplayback', ensureLoggedIn(), (req, res) => {
     const { v: videoId } = req.query;
 
     // Default timeout is 5 minutes, which is too short for videos
@@ -60,7 +73,7 @@ app.prepare().then(() => {
     ytdl(`https://youtube.com/watch?v=${videoId}`).pipe(res);
   });
 
-  server.use('/subtitles', async (req, res) => {
+  server.use('/subtitles', ensureLoggedIn(), async (req, res) => {
     const { url } = req.query;
 
     const result = await fetch(url);
@@ -76,8 +89,32 @@ app.prepare().then(() => {
     res.type('text/vtt').send(payload);
   });
 
-  server.get('*', (req, res) => {
+  /** These routes do not need authentication */
+  const whitelistedRoutes = [
+    '/login',
+    '/setupAccount',
+    '/static',
+    '/_next',
+  ];
+  server.get('*', async (req, res) => {
     const parsedUrl = parse(req.url, true);
+    const url = parsedUrl.href;
+
+    if (whitelistedRoutes.some(route => url.startsWith(route))) {
+      return handle(req, res, parsedUrl);
+    }
+
+    // Check login state
+    if (!req.user) {
+      const userExists = await User.count();
+
+      if (userExists) {
+        return res.redirect('/login');
+      }
+
+      return res.redirect('/setupAccount');
+    }
+
     return handle(req, res, parsedUrl);
   })
 

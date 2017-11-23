@@ -24,15 +24,13 @@ export default () => {
   }));
 
   passport.serializeUser((user, done) => {
-    console.log('user.id', user.id);
     done(null, user.id);
   });
 
   passport.deserializeUser((id, done) => {
-    console.log('id', id);
-    User.findById(id, (err, user) => {
-      console.log('err, user', err, user);
-      done(err, user);
-    });
+    User.findById(id).then(
+      user => done(null, user),
+      error => done(error),
+    );
   });
 };

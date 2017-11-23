@@ -118,8 +118,6 @@ type Mutation {
   addChannel(username: String!): Channel
   # Adds a user to the database of registered users
   addUser(user: UserInput!): User
-  # Log in a user and set a session token
-  loginUser(username: String!, password: String!): Boolean
 }
 
 schema {
