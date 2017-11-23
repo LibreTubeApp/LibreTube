@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 import argon from 'argon2';
 
-const db = new Sequelize(
+export const db = new Sequelize(
   process.env.DBDATABASE,
   process.env.DBUSER,
   process.env.DBPASSWORD,

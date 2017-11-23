@@ -1,6 +1,11 @@
 export default [`
 scalar Date
 
+type CurrentUser {
+  loggedIn: Boolean!
+  user: User
+}
+
 # A registered user
 type User {
   # The internal ID of this user
@@ -94,6 +99,8 @@ type Thumbnail {
 
 # The root queries in which all queries are held
 type Query {
+  # Returns the currently logged in user
+  currentUser: CurrentUser!
   # The channels this user has subscribed to
   channels: [Channel]!
   # A video

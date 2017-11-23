@@ -1,16 +1,15 @@
 import withData from '../utils/withData'
-import Head from '../components/Head';
+import Layout from '../components/Layout';
 import AddSubscription from '../components/AddSubscription';
 import SubscriptionList from '../components/SubscriptionList';
 
 export default withData(props => (
-  <div>
-    <Head title="Subscriptions - Libretube" />
+  <Layout title="Subscriptions - Libretube" >
     <main>
       <h1>Your subscriptions</h1>
       <AddSubscription />
       <SubscriptionList />
     </main>
-  </div>
+  </Layout>
 ));
 

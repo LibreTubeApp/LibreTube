@@ -5,15 +5,15 @@ import session from 'express-session';
 import next from 'next';
 import passport from 'passport';
 import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 import ytdl from 'ytdl-core';
 import { ensureLoggedIn } from 'connect-ensure-login';
+import storeBuilder from 'connect-session-sequelize';
 
 import typeDefs from './graphql/schema';
 import resolvers from './graphql/resolvers';
-import { User } from './graphql/connectors';
+import { db, User } from './graphql/connectors';
 import parseXml from './utils/parseXml';
 import startCron from './utils/cron';
 import setupPassport from './utils/setupPassport';
@@ -28,24 +28,35 @@ setupPassport();
 startCron();
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
+const SequelizeStore = storeBuilder(session.Store);
 
 // Middlewares
-server.use(session({
-  secret: 'dogs',
-  resave: false,
-  saveUninitialized: false,
-}));
-server.use(cookieParser());
 server.use(bodyParser.json());
+server.use(session({
+  store: new SequelizeStore({ db }),
+  secret: 'dogs',
+}));
 server.use(passport.initialize());
 server.use(passport.session());
 
 app.prepare().then(() => {
-  server.use('/graphql', ensureLoggedIn(), graphqlExpress({ schema }));
+  server.use('/graphql', graphqlExpress(request => ({
+    schema,
+    context: {
+      user: request.user,
+      request,
+    },
+  })));
 
-  server.use('/graphql-explorer', ensureLoggedIn(), graphiqlExpress({
-    endpointURL: '/graphql',
-  }));
+  if (process.env.NODE_ENV !== 'production') {
+    server.use('/graphql-explorer', graphiqlExpress({
+      endpointURL: '/graphql',
+    }));
+  }
+
+  server.head('/check-login', (req, res) => {
+    res.sendStatus(req.user ? 204 : 403);
+  });
 
   server.post('/login', passport.authenticate('local'), (req, res) => {
     res.sendStatus(204);
@@ -53,7 +64,7 @@ app.prepare().then(() => {
 
   server.get('/logout', (req, res) => {
     req.logout();
-    res.redirect('/');
+    res.redirect('/login');
   });
 
   server.use('/videoplayback', ensureLoggedIn(), (req, res) => {
@@ -96,6 +107,7 @@ app.prepare().then(() => {
     '/static',
     '/_next',
   ];
+
   server.get('*', async (req, res) => {
     const parsedUrl = parse(req.url, true);
     const url = parsedUrl.href;

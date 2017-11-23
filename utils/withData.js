@@ -56,10 +56,7 @@ export default ComposedComponent => {
         }
       }
 
-      return {
-        serverState,
-        ...composedInitialProps
-      }
+      return { serverState, ...composedInitialProps };
     }
 
     constructor (props) {

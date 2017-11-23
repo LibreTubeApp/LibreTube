@@ -30,14 +30,13 @@ export default class LoginForm extends React.Component {
       const result = await fetch('/login', {
         method: 'POST',
         body: JSON.stringify({ username, password }),
+        credentials: 'same-origin',
         headers: {
           'content-type': 'application/json',
         },
       });
 
-      console.log('result', result);
-
-      //Router.push('/');
+      Router.push('/');
     } catch (error) {
       this.setState({ error, submitting: false });
     }

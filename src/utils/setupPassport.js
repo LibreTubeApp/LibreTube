@@ -28,9 +28,8 @@ export default () => {
   });
 
   passport.deserializeUser((id, done) => {
-    User.findById(id).then(
-      user => done(null, user),
-      error => done(error),
-    );
+    User.findById(id)
+      .then(user => done(null, user))
+      .catch(error => done(error));
   });
 };

@@ -17,7 +17,17 @@ import {
 
 export default {
   Query: {
-    videos(_, args, context) {
+    currentUser(_, args, context) {
+      if (!context.user) {
+        return { loggedIn: false };
+      }
+
+      return {
+        loggedIn: true,
+        user: context.user.dataValues,
+      };
+    },
+    videos(_, args) {
       return Video.findAll({ where: args });
     },
     video(_, args) {
