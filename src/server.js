@@ -58,8 +58,18 @@ app.prepare().then(() => {
     res.sendStatus(req.user ? 204 : 403);
   });
 
-  server.post('/login', passport.authenticate('local'), (req, res) => {
-    res.sendStatus(204);
+  server.post('/login', (req, res) => {
+    passport.authenticate('local', (error, user, info, status) => {
+      if (error) return res.sendStatus(500);
+      if (!user) return res.sendStatus(403);
+
+      req.login(user, (err) => {
+        if (err) return res.sendStatus(500);
+
+        // OK, logged in
+        res.sendStatus(204);
+      });
+    })(req, res, next);
   });
 
   server.get('/logout', (req, res) => {

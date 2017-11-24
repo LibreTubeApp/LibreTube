@@ -24,7 +24,7 @@ export default class LoginForm extends React.Component {
     const { username, password } = this.state;
     event.preventDefault();
 
-    this.setState({ submitting: true });
+    this.setState({ submitting: true, error: null });
 
     try {
       const result = await fetch('/login', {
@@ -35,6 +35,21 @@ export default class LoginForm extends React.Component {
           'content-type': 'application/json',
         },
       });
+
+      if (result.status === 403) {
+        this.setState({
+          error: 'The username and password you\'ve given doesn\'t match any ' +
+            'account. Try again',
+          submitting: false,
+        });
+        return;
+      }
+      if (!result.ok) {
+        this.setState({
+          error: 'An unknown error occured logging you in. Check the logs',
+          submitting: false,
+        });
+      }
 
       Router.push('/');
     } catch (error) {
@@ -72,6 +87,7 @@ export default class LoginForm extends React.Component {
             Login
           </button>
 
+          {error && <p>{`${error}`}</p>}
           {submitting && <p>Please wait...</p>}
         </form>
       </div>
