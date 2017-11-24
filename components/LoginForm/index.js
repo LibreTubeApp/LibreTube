@@ -20,7 +20,7 @@ export default class LoginForm extends React.Component {
 
   setRef = ref => this.formRef = ref;
 
-  handleSubmit = async event => {
+  handleLogin = async event => {
     const { username, password } = this.state;
     event.preventDefault();
 
@@ -37,15 +37,15 @@ export default class LoginForm extends React.Component {
       });
 
       if (result.status === 403) {
-        this.setState({
+        return this.setState({
           error: 'The username and password you\'ve given doesn\'t match any ' +
             'account. Try again',
           submitting: false,
         });
-        return;
       }
+
       if (!result.ok) {
-        this.setState({
+        return this.setState({
           error: 'An unknown error occured logging you in. Check the logs',
           submitting: false,
         });
@@ -61,7 +61,7 @@ export default class LoginForm extends React.Component {
     const { submitting, error } = this.state;
     return (
       <div>
-        <form onSubmit={this.handleSubmit} ref={this.setRef}>
+        <form onSubmit={this.handleLogin} ref={this.setRef}>
           <style jsx>{styles}</style>
           <label>
             Username

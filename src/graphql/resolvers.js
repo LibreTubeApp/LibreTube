@@ -15,6 +15,8 @@ import {
   getSubtitlesForVideo
 } from '../utils/ytapi';
 
+const sleep = time => new Promise(resolve => setTimeout(resolve, time));
+
 export default {
   Query: {
     currentUser(_, args, context) {
@@ -24,7 +26,7 @@ export default {
 
       return {
         loggedIn: true,
-        user: context.user.dataValues,
+        user: context.user,
       };
     },
     videos(_, args) {
@@ -50,32 +52,33 @@ export default {
       const channel = await getChannelByName(args.username);
       const created = await Channel.create(channel);
       await refreshVideosOnChannel(channel.id);
-      return created.dataValues;
+      return created;
     },
   },
   Video: {
     channel(obj) {
-      return Channel.findById(obj.dataValues.channelId);
+      return Channel.findById(obj.channelId);
     },
     details(obj) {
-      return getDetailsForVideo(obj.dataValues.id);
+      return getDetailsForVideo(obj.id);
     },
     thumbnails(obj) {
       return Thumbnail.findAll({
         where: {
-          videoId: obj.dataValues.id,
+          videoId: obj.id,
         },
       });
     },
     subtitles(obj) {
-      return getSubtitlesForVideo(obj.dataValues.id);
+      return getSubtitlesForVideo(obj.id);
     },
   },
   Channel: {
-    videos(obj) {
+    async videos(obj) {
+      await sleep(1000);
       return Video.findAll({
         where: {
-          channelId: obj.dataValues.id,
+          channelId: obj.id,
         }
       });
     },

@@ -54,10 +54,12 @@ app.prepare().then(() => {
     }));
   }
 
+  // TODO Move into GraphQL
   server.head('/check-login', (req, res) => {
     res.sendStatus(req.user ? 204 : 403);
   });
 
+  // TODO Move into GraphQL
   server.post('/login', (req, res) => {
     passport.authenticate('local', (error, user, info, status) => {
       if (error) return res.sendStatus(500);
@@ -72,6 +74,7 @@ app.prepare().then(() => {
     })(req, res, next);
   });
 
+  // TODO Move into GraphQL
   server.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/login');
