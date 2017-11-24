@@ -15,8 +15,6 @@ import {
   getSubtitlesForVideo
 } from '../utils/ytapi';
 
-const sleep = time => new Promise(resolve => setTimeout(resolve, time));
-
 export default {
   Query: {
     currentUser(_, args, context) {
@@ -74,8 +72,7 @@ export default {
     },
   },
   Channel: {
-    async videos(obj) {
-      await sleep(1000);
+    videos(obj) {
       return Video.findAll({
         where: {
           channelId: obj.id,

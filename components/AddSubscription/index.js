@@ -23,6 +23,9 @@ class AddSubscription extends React.Component {
         variables: {
           username,
         },
+        refetchQueries: [
+          'allSubscriptions',
+        ],
       });
     } catch (error) {
       this.setState({ error });
@@ -59,19 +62,6 @@ const addSubscription = gql`
   mutation addSubscription($username: String!) {
     addChannel(username: $username) {
       id
-      videos {
-        id
-        title
-        publishedAt
-        channel {
-          id
-          username
-        }
-        thumbnails {
-          url
-          width
-        }
-      }
     }
   }
 `;
