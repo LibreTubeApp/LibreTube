@@ -40,11 +40,12 @@ server.use(passport.initialize());
 server.use(passport.session());
 
 app.prepare().then(() => {
-  server.use('/graphql', graphqlExpress(request => ({
+  server.use('/graphql', graphqlExpress((request, response) => ({
     schema,
     context: {
       user: request.user,
       request,
+      response,
     },
   })));
 
@@ -53,32 +54,6 @@ app.prepare().then(() => {
       endpointURL: '/graphql',
     }));
   }
-
-  // TODO Move into GraphQL
-  server.head('/check-login', (req, res) => {
-    res.sendStatus(req.user ? 204 : 403);
-  });
-
-  // TODO Move into GraphQL
-  server.post('/login', (req, res) => {
-    passport.authenticate('local', (error, user, info, status) => {
-      if (error) return res.sendStatus(500);
-      if (!user) return res.sendStatus(403);
-
-      req.login(user, (err) => {
-        if (err) return res.sendStatus(500);
-
-        // OK, logged in
-        res.sendStatus(204);
-      });
-    })(req, res, next);
-  });
-
-  // TODO Move into GraphQL
-  server.get('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/login');
-  });
 
   server.use('/videoplayback', ensureLoggedIn(), (req, res) => {
     const { v: videoId } = req.query;
@@ -113,33 +88,8 @@ app.prepare().then(() => {
     res.type('text/vtt').send(payload);
   });
 
-  /** These routes do not need authentication */
-  const whitelistedRoutes = [
-    '/login',
-    '/setupAccount',
-    '/static',
-    '/_next',
-  ];
-
-  server.get('*', async (req, res) => {
+  server.get('*', (req, res) => {
     const parsedUrl = parse(req.url, true);
-    const url = parsedUrl.href;
-
-    if (whitelistedRoutes.some(route => url.startsWith(route))) {
-      return handle(req, res, parsedUrl);
-    }
-
-    // Check login state
-    if (!req.user) {
-      const userExists = await User.count();
-
-      if (userExists) {
-        return res.redirect('/login');
-      }
-
-      return res.redirect('/setupAccount');
-    }
-
     return handle(req, res, parsedUrl);
   })
 

@@ -75,6 +75,7 @@ class AccountSetup extends React.Component {
               required
               minLength={6}
               onChange={this.handleChange}
+              autoComplete="new-password"
             />
           </label>
           <label>

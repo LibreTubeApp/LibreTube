@@ -10,7 +10,8 @@ export default css`
     display: block;
   }
 
-  input {
+  input[type="text"],
+  input[type="password"] {
     /* subtract padding */
     width: calc(100% - 20px);
     margin-bottom: 15px;

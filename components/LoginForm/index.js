@@ -1,12 +1,12 @@
 import React from 'react';
-import { graphql } from 'react-apollo';
+import { graphql, compose, withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
 import Router from 'next/router'
 
 import ErrorMessage from '../ErrorMessage';
 import styles from './styles';
 
-export default class LoginForm extends React.Component {
+class LoginForm extends React.Component {
   state = {
     username: '',
     password: '',
@@ -27,29 +27,12 @@ export default class LoginForm extends React.Component {
     this.setState({ submitting: true, error: null });
 
     try {
-      const result = await fetch('/login', {
-        method: 'POST',
-        body: JSON.stringify({ username, password }),
-        credentials: 'same-origin',
-        headers: {
-          'content-type': 'application/json',
-        },
+      await this.props.mutate({
+        variables: { username, password },
       });
 
-      if (result.status === 403) {
-        return this.setState({
-          error: 'The username and password you\'ve given doesn\'t match any ' +
-            'account. Try again',
-          submitting: false,
-        });
-      }
-
-      if (!result.ok) {
-        return this.setState({
-          error: 'An unknown error occured logging you in. Check the logs',
-          submitting: false,
-        });
-      }
+      // Clean any residual data between state changes
+      await this.props.client.resetStore();
 
       Router.push('/');
     } catch (error) {
@@ -80,17 +63,37 @@ export default class LoginForm extends React.Component {
               required
               minLength={6}
               onChange={this.handleChange}
+              autoComplete="current-password"
             />
           </label>
 
-          <button className="primary-btn" disabled={submitting}>
-            Login
-          </button>
+          <input
+            type="submit"
+            className="primary-btn"
+            disabled={submitting}
+            value="Login"
+          />
 
-          {error && <p>{`${error}`}</p>}
+          <ErrorMessage
+            message="Failed to login."
+            error={error}
+          />
           {submitting && <p>Please wait...</p>}
         </form>
       </div>
     );
   }
 }
+
+const loginUser = gql`
+  mutation loginUser($username: String!, $password: String!) {
+    loginUser(username: $username, password: $password) {
+      loggedIn
+    }
+  }
+`;
+
+export default compose(
+  withApollo,
+  graphql(loginUser),
+)(LoginForm);

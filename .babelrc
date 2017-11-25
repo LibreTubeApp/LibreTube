@@ -1,4 +1,4 @@
 {
   presets: ["next/babel", "env", "stage-2"],
-  plugins: ["transform-runtime"],
+  plugins: ["graphql-tag", "transform-runtime"],
 }

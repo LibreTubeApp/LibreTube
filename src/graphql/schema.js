@@ -121,6 +121,10 @@ input UserInput {
 
 # The root mutation in which all mutations are held
 type Mutation {
+  # Authenticates a user
+  loginUser(username: String!, password: String!): CurrentUser
+  # Erases the current user's session
+  logout: CurrentUser
   # Adds a channel into the channel set
   addChannel(username: String!): Channel
   # Adds a user to the database of registered users

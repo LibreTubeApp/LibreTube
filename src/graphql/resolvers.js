@@ -1,5 +1,6 @@
 import { GraphQLScalarType } from 'graphql';
 import { Kind } from 'graphql/language';
+import argon from 'argon2';
 import {
   User,
   Video,
@@ -38,6 +39,43 @@ export default {
     },
   },
   Mutation: {
+    loginUser(_, { username, password }, context) {
+      return new Promise(async (resolve, reject) => {
+        try {
+          // Always run password validation to impede side channel attacks
+          const user = await User.findOne({ where: { username }});
+          const validPassword = await argon.verify(
+            user ? user.password : 'Some_Fake_Password',
+            password,
+          );
+
+          if (!user || !validPassword) {
+            return reject(
+              'The username and password you\'ve given doesn\'t match any ' +
+              'account. Try again'
+            );
+          }
+
+          context.request.login(user, (loginError) => {
+            if (loginError) return reject(loginError);
+
+            // OK, logged in
+            resolve({
+              loggedIn: true,
+              user,
+            });
+          });
+        } catch (error) {
+          reject(error);
+        }
+      });
+    },
+    logout(_, args, context) {
+      context.request.logout();
+      return {
+        loggedIn: false,
+      };
+    },
     addUser(_, args) {
       return addUser(args);
     },

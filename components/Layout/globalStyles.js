@@ -113,7 +113,9 @@ export default css`
     display: block;
   }
 
-  button {
+  button,
+  input[type="submit"],
+  input[type="button"] {
     padding: 10px 30px;
     border-radius: 0;
     border: 1px solid var(--secondary-color);
