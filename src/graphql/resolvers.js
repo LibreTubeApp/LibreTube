@@ -17,6 +17,7 @@ import {
 } from '../repositories/thumbnail';
 import {
   getAllChannels,
+  getChannelById,
 } from '../repositories/channel';
 import {
   getChannelByName,
@@ -110,8 +111,8 @@ export default {
     details(obj) {
       return getDetailsForVideo(obj.id);
     },
-    thumbnails(obj) {
-      return getThumbnailByVideoId(context.user, obj.id);
+    thumbnails(obj, args, context) {
+      return getThumbnailsByVideoId(context.user, obj.id);
     },
     subtitles(obj) {
       return getSubtitlesForVideo(obj.id);
