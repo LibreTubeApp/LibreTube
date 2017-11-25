@@ -3,18 +3,29 @@ import { Kind } from 'graphql/language';
 import argon from 'argon2';
 import {
   User,
-  Video,
   Channel,
-  Thumbnail,
   addUser,
   verifyLogin
 } from './connectors';
+import {
+  getAllVideos,
+  getVideoById,
+  getVideoByChannelId,
+} from '../repositories/video';
+import {
+  getThumbnailsByVideoId,
+} from '../repositories/thumbnail';
+import {
+  getAllChannels,
+} from '../repositories/channel';
 import {
   getChannelByName,
   refreshVideosOnChannel,
   getDetailsForVideo,
   getSubtitlesForVideo
 } from '../utils/ytapi';
+
+// TODO move more stuff to repositories
 
 export default {
   Query: {
@@ -28,14 +39,14 @@ export default {
         user: context.user,
       };
     },
-    videos(_, args) {
-      return Video.findAll({ where: args });
+    videos(_, args, context) {
+      return getAllVideos(context.user);
     },
-    video(_, args) {
-      return Video.findById(args.id);
+    video(_, args, context) {
+      return getVideoById(context.user, id);
     },
-    channels(_, args) {
-      return Channel.findAll({ where: args });
+    channels(_, args, context) {
+      return getAllChannels(context.user);
     },
   },
   Mutation: {
@@ -43,9 +54,10 @@ export default {
       return new Promise(async (resolve, reject) => {
         try {
           // Always run password validation to impede side channel attacks
+          const dummyPassword = '$argon2i$v=19$m=32768,t=20,p=1$cHk+Rc3BPAxdZN2ASo92Mw$31RMbtKtMos7NMgAf0Hq1U6Bh6d4B/pnDNQES2U1tOk';
           const user = await User.findOne({ where: { username }});
           const validPassword = await argon.verify(
-            user ? user.password : 'Some_Fake_Password',
+            user ? user.password : dummyPassword,
             password,
           );
 
@@ -92,30 +104,22 @@ export default {
     },
   },
   Video: {
-    channel(obj) {
-      return Channel.findById(obj.channelId);
+    channel(obj, args, context) {
+      return getChannelById(context.user, obj.channelId);
     },
     details(obj) {
       return getDetailsForVideo(obj.id);
     },
     thumbnails(obj) {
-      return Thumbnail.findAll({
-        where: {
-          videoId: obj.id,
-        },
-      });
+      return getThumbnailByVideoId(context.user, obj.id);
     },
     subtitles(obj) {
       return getSubtitlesForVideo(obj.id);
     },
   },
   Channel: {
-    videos(obj) {
-      return Video.findAll({
-        where: {
-          channelId: obj.id,
-        }
-      });
+    videos(obj, args, context) {
+      return getVideoByChannelId(context.user, obj.id);
     },
   },
   Date: new GraphQLScalarType({
