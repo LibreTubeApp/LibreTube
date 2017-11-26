@@ -1,50 +1,22 @@
-import { GraphQLScalarType } from 'graphql';
-import { Kind } from 'graphql/language';
-import argon from 'argon2';
-import {
-  User,
-  Channel,
-  addUser,
-  verifyLogin
-} from './connectors';
-import {
-  getAllVideos,
-  getVideoById,
-  getVideoByChannelId,
-} from '../repositories/video';
-import {
-  getThumbnailsByVideoId,
-} from '../repositories/thumbnail';
-import {
-  getAllChannels,
-  getChannelById,
-} from '../repositories/channel';
-import {
-  getChannelByName,
-  refreshVideosOnChannel,
-  getDetailsForVideo,
-  getSubtitlesForVideo
-} from '../utils/ytapi';
-
-// TODO move more stuff to repositories
+import dateScalar from './dateScalar';
+import { loginUser } from '../utils/auth';
+import { getAllVideos, getVideoById, getVideoByChannelId } from '../repositories/video';
+import { addUser } from '../repositories/user';
+import { getThumbnailsByVideoId } from '../repositories/thumbnail';
+import { getCurrentUser } from '../repositories/currentUser';
+import { getAllChannels, getChannelById, addChannel } from '../repositories/channel';
+import { getDetailsForVideo, getSubtitlesForVideo } from '../utils/ytapi';
 
 export default {
   Query: {
     currentUser(_, args, context) {
-      if (!context.user) {
-        return { loggedIn: false };
-      }
-
-      return {
-        loggedIn: true,
-        user: context.user,
-      };
+      return getCurrentUser(context.user);
     },
     videos(_, args, context) {
       return getAllVideos(context.user);
     },
     video(_, args, context) {
-      return getVideoById(context.user, id);
+      return getVideoById(context.user, args.id);
     },
     channels(_, args, context) {
       return getAllChannels(context.user);
@@ -52,36 +24,7 @@ export default {
   },
   Mutation: {
     loginUser(_, { username, password }, context) {
-      return new Promise(async (resolve, reject) => {
-        try {
-          // Always run password validation to impede side channel attacks
-          const dummyPassword = '$argon2i$v=19$m=32768,t=20,p=1$cHk+Rc3BPAxdZN2ASo92Mw$31RMbtKtMos7NMgAf0Hq1U6Bh6d4B/pnDNQES2U1tOk';
-          const user = await User.findOne({ where: { username }});
-          const validPassword = await argon.verify(
-            user ? user.password : dummyPassword,
-            password,
-          );
-
-          if (!user || !validPassword) {
-            return reject(
-              'The username and password you\'ve given doesn\'t match any ' +
-              'account. Try again'
-            );
-          }
-
-          context.request.login(user, (loginError) => {
-            if (loginError) return reject(loginError);
-
-            // OK, logged in
-            resolve({
-              loggedIn: true,
-              user,
-            });
-          });
-        } catch (error) {
-          reject(error);
-        }
-      });
+      return loginUser(context.request, username, password);
     },
     logout(_, args, context) {
       context.request.logout();
@@ -92,16 +35,8 @@ export default {
     addUser(_, args) {
       return addUser(args);
     },
-    async addChannel(_, args) {
-      const matches = await Channel.findAndCount({ where: args });
-      if (matches.count) {
-        throw `A channel with the username ${args.username} already exists`;
-      }
-
-      const channel = await getChannelByName(args.username);
-      const created = await Channel.create(channel);
-      await refreshVideosOnChannel(channel.id);
-      return created;
+    addChannel(_, args, context) {
+      return addChannel(context.user, args.username);
     },
   },
   Video: {
@@ -123,20 +58,5 @@ export default {
       return getVideoByChannelId(context.user, obj.id);
     },
   },
-  Date: new GraphQLScalarType({
-    name: 'Date',
-    description: 'Date custom scalar type',
-    parseValue(value) {
-      return new Date(value); // value from the client
-    },
-    serialize(value) {
-      return value.getTime(); // value sent to the client
-    },
-    parseLiteral(ast) {
-      if (ast.kind === Kind.INT) {
-        return parseInt(ast.value, 10); // ast value is always in string format
-      }
-      return null;
-    },
-  }),
+  Date: dateScalar,
 };

@@ -16,7 +16,7 @@ import resolvers from './graphql/resolvers';
 import { db, User } from './graphql/connectors';
 import parseXml from './utils/parseXml';
 import startCron from './utils/cron';
-import setupPassport from './utils/setupPassport';
+import { setupPassport } from './utils/auth';
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
