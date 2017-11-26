@@ -6,8 +6,8 @@ import { Channel, Video, Thumbnail } from '../graphql/connectors';
 const prefix = 'https://www.googleapis.com/youtube/v3';
 const apiKey = 'AIzaSyDeFkttvdLyrHWrxoSS36rhT-YaYuJvfjc';
 
-export const getChannelByName = async username => {
-  const url = `${prefix}/channels?part=snippet&key=${apiKey}&forUsername=${username}`;
+export const getChannelById = async id => {
+  const url = `${prefix}/channels?part=snippet&key=${apiKey}&id=${id}`;
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -15,13 +15,13 @@ export const getChannelByName = async username => {
   }
 
   const data = await response.json();
-  const { id, etag, snippet } = data.items[0];
+  const { etag, snippet } = data.items[0];
   const { title, description, publishedAt, thumbnails } = snippet;
 
   return {
     id,
     etag,
-    username,
+    //username,
     title,
     description,
     publishedAt,
@@ -109,6 +109,7 @@ export const getSubtitlesForVideo = async videoId => {
 
 export const searchForChannels = async (user, searchTerm) => {
   if (!user) throw 'Not authorized';
+  if (!searchTerm) return [];
 
   try {
     const response = await fetch(

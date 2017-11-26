@@ -104,7 +104,7 @@ type Query {
   # The channels this user has subscribed to
   channels: [Channel]!
   # Searches for channels directly against YouTube
-  channelsSearch(searchTerm: String!): [Channel]!
+  channelsSearch(searchTerm: String): [Channel]!
   # A video
   video(id: ID!): Video
   # The videos of the current user's subscriptions
@@ -128,7 +128,7 @@ type Mutation {
   # Erases the current user's session
   logout: CurrentUser
   # Adds a channel into the channel set
-  addChannel(username: String!): Channel
+  addChannel(id: String!): Channel
   # Adds a user to the database of registered users
   addUser(user: UserInput!): User
 }

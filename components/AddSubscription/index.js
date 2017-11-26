@@ -2,26 +2,22 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
+import ChannelSearch from './ChannelSearch';
 import ErrorMessage from '../ErrorMessage';
 import styles from './styles';
 
 class AddSubscription extends React.Component {
   state = {};
 
-  handleChange = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
-  };
-
   handleSubmit = async event => {
-    const { username } = this.state;
+    const { channelId } = this.state;
     event.preventDefault();
     this.setState({ error: null });
 
     try {
       await this.props.mutate({
         variables: {
-          username,
+          channelId,
         },
         refetchQueries: [
           'allSubscriptions',
@@ -32,6 +28,10 @@ class AddSubscription extends React.Component {
     }
   };
 
+  onSelect = (_, value) => {
+    this.setState({ channelId: value.suggestion.id });
+  };
+
   render() {
     const { error } = this.state;
     return (
@@ -40,12 +40,7 @@ class AddSubscription extends React.Component {
         <label htmlFor="AddSubscription">
           New subscription
           <div className="input-group">
-            <input
-              name="username"
-              type="search"
-              id="AddSubscription"
-              onChange={this.handleChange}
-            />
+            <ChannelSearch onSelect={this.onSelect} />
             <button className="primary-btn">Add</button>
           </div>
         </label>
@@ -59,8 +54,8 @@ class AddSubscription extends React.Component {
 }
 
 const addSubscription = gql`
-  mutation addSubscription($username: String!) {
-    addChannel(username: $username) {
+  mutation addSubscription($channelId: String!) {
+    addChannel(id: $channelId) {
       id
     }
   }

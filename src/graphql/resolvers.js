@@ -39,7 +39,7 @@ export default {
       return addUser(args);
     },
     addChannel(_, args, context) {
-      return addChannel(context.user, args.username);
+      return addChannel(context.user, args.id);
     },
   },
   Video: {

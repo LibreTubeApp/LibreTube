@@ -1,4 +1,4 @@
-import { getChannelByName, refreshVideosOnChannel } from '../utils/ytapi';
+import { refreshVideosOnChannel, getChannelById as getChannelFromYouTube } from '../utils/ytapi';
 import { Channel } from '../graphql/connectors';
 
 export const getAllChannels = async (user) => {
@@ -13,17 +13,17 @@ export const getChannelById = async (user, id) => {
   return Channel.findById(id);
 };
 
-export const addChannel = async (user, username) => {
+export const addChannel = async (user, id) => {
   if (!user) throw 'Not authorized';
 
-  const matches = await Channel.findAndCount({ where: { username }});
+  const matches = await Channel.count({ where: { id }});
 
   if (matches.count) {
     throw `A channel with the username ${username} already exists`;
   }
 
-  const channel = await getChannelByName(username);
+  const channel = await getChannelFromYouTube(id);
   const created = await Channel.create(channel);
-  await refreshVideosOnChannel(channel.id);
+  await refreshVideosOnChannel(id);
   return created;
 };
