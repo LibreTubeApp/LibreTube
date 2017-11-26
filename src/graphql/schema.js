@@ -77,7 +77,7 @@ type Channel {
   # A unique identifier of this channel
   id: ID!
   # The username of the channel
-  username: String!
+  username: String
   # The title of the channel
   title: String!
   # A textual description of the channel
@@ -103,6 +103,8 @@ type Query {
   currentUser: CurrentUser!
   # The channels this user has subscribed to
   channels: [Channel]!
+  # Searches for channels directly against YouTube
+  channelsSearch(searchTerm: String!): [Channel]!
   # A video
   video(id: ID!): Video
   # The videos of the current user's subscriptions

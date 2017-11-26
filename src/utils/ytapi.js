@@ -106,3 +106,37 @@ export const getSubtitlesForVideo = async videoId => {
     console.error(`Failed to fetch subtitles for video ${videoId}: ${error}`);
   }
 };
+
+export const searchForChannels = async (user, searchTerm) => {
+  if (!user) throw 'Not authorized';
+
+  try {
+    const response = await fetch(
+      `${prefix}/search?part=snippet&type=channel&key=${apiKey}&q=${searchTerm}`
+    );
+
+    if (!response.ok) {
+      throw await response.text();
+    }
+
+    const data = await response.json();
+    if (!data.items || !data.items.length) {
+      throw 'Found no channels for this search term';
+    }
+
+    return data.items.map(channel => {
+      const { id, etag, snippet } = channel;
+      const { title, description } = snippet;
+
+      return {
+        id: id.channelId,
+        //username: String!
+        title,
+        description,
+        etag,
+      };
+    });
+  } catch (error) {
+    throw `Failed to search for channels: ${error}`;
+  }
+};

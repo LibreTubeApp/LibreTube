@@ -5,7 +5,7 @@ import { addUser } from '../repositories/user';
 import { getThumbnailsByVideoId } from '../repositories/thumbnail';
 import { getCurrentUser } from '../repositories/currentUser';
 import { getAllChannels, getChannelById, addChannel } from '../repositories/channel';
-import { getDetailsForVideo, getSubtitlesForVideo } from '../utils/ytapi';
+import { getDetailsForVideo, getSubtitlesForVideo, searchForChannels } from '../utils/ytapi';
 
 export default {
   Query: {
@@ -20,6 +20,9 @@ export default {
     },
     channels(_, args, context) {
       return getAllChannels(context.user);
+    },
+    channelsSearch(_, args, context) {
+      return searchForChannels(context.user, args.searchTerm);
     },
   },
   Mutation: {

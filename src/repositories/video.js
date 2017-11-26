@@ -11,3 +11,9 @@ export const getVideoById = async (user, id) => {
 
   return Video.findById(id);
 };
+
+export const getVideoByChannelId = async (user, channelId) => {
+  if (!user) throw 'Not authorized';
+
+  return Video.findAll({ where: { channelId }});
+};
