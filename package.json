@@ -44,6 +44,7 @@
     "react-apollo": "^2.0.1",
     "react-autosuggest": "^9.3.2",
     "react-dom": "^16.1.1",
+    "react-feather": "^1.0.7",
     "sequelize": "^4.22.7",
     "xml2js": "^0.4.19",
     "ytdl-core": "^0.18.2"

@@ -48,9 +48,9 @@ export default class ChannelSearch extends React.Component {
     return (
       <SearchFetcher
         searchTerm={searchTerm}
-        render={(props) => (
+        render={({ suggestions }) => (
           <Autosuggest
-            {...props}
+            suggestions={suggestions}
             onSuggestionsFetchRequested={this.updateModel}
             onSuggestionsClearRequested={this.clearModel}
             getSuggestionValue={getSuggestionValue}

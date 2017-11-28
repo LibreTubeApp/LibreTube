@@ -8,6 +8,17 @@ export default css`
     border-bottom: 1px solid var(--shadow-color);
   }
 
+  header .settings {
+    float: right;
+    margin-top: 15px;
+    transition: .25s all;
+    cursor: pointer;
+  }
+
+  header .settings:hover {
+    transform: translateY(-5px);
+  }
+
   .logo {
     height: 45px;
   }

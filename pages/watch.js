@@ -20,7 +20,7 @@ class Watch extends React.Component {
     const { v: videoId } = this.props.url.query;
 
     return (
-      <Layout title="Video player - Libretube" >
+      <Layout withSidebar title="Video player - Libretube" >
         <main>
           <VideoPlayer videoId={videoId} />
         </main>

@@ -19,7 +19,12 @@ class Index extends React.Component {
 
   render() {
     return (
-      <Layout title="Subscriptions - Libretube" >
+      <Layout withSidebar title="Subscriptions - Libretube" >
+        <style jsx>{`
+          h1 {
+            margin-left: 15px;
+          }
+        `}</style>
         <main>
           <h1>Your subscriptions</h1>
           <AddSubscription />

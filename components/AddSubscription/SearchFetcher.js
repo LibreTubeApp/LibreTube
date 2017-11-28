@@ -10,6 +10,8 @@ class SearchFetcher extends React.Component {
       }
     } = this.props;
 
+    if (!channelsSearch) return null;
+
     return this.props.render({
       suggestions: channelsSearch,
     });
