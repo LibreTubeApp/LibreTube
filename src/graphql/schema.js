@@ -1,5 +1,6 @@
 export default [`
 scalar Date
+scalar Null
 
 type CurrentUser {
   loggedIn: Boolean!
@@ -131,6 +132,8 @@ type Mutation {
   addChannel(id: String!): Channel
   # Adds a user to the database of registered users
   addUser(user: UserInput!): User
+  # Removes a channel and any resouces associated with it
+  removeChannel(id: String!): Null
 }
 
 schema {

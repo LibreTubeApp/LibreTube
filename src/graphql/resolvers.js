@@ -1,10 +1,11 @@
 import dateScalar from './dateScalar';
+import nullScalar from './nullScalar';
 import { loginUser } from '../utils/auth';
 import { getAllVideos, getVideoById, getVideoByChannelId } from '../repositories/video';
 import { addUser } from '../repositories/user';
 import { getThumbnailsByVideoId } from '../repositories/thumbnail';
 import { getCurrentUser } from '../repositories/currentUser';
-import { getAllChannels, getChannelById, addChannel } from '../repositories/channel';
+import { getAllChannels, getChannelById, addChannel, removeChannel } from '../repositories/channel';
 import { getDetailsForVideo, getSubtitlesForVideo, searchForChannels } from '../utils/ytapi';
 
 export default {
@@ -41,6 +42,9 @@ export default {
     addChannel(_, args, context) {
       return addChannel(context.user, args.id);
     },
+    removeChannel(_, args, context) {
+      return removeChannel(context.user, args.id);
+    },
   },
   Video: {
     channel(obj, args, context) {
@@ -62,4 +66,5 @@ export default {
     },
   },
   Date: dateScalar,
+  Null: nullScalar,
 };

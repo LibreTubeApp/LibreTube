@@ -21,6 +21,7 @@ class AddSubscription extends React.Component {
         },
         refetchQueries: [
           'allSubscriptions',
+          'allChannels',
         ],
       });
     } catch (error) {

@@ -17,6 +17,8 @@ export const db = new Sequelize(
   },
 );
 
+export const queryInterface = db.getQueryInterface();
+
 db.authenticate()
   .then(() => {
     console.log('Connection has been established successfully.');
