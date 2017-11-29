@@ -59,7 +59,25 @@ export const refreshVideosOnChannel = async channelId => {
 
       for (const type in thumbnails) {
         const { url, width, height } = thumbnails[type];
-        Thumbnail.create({ type, url, width, height, videoId: id.videoId });
+        const { count } = Thumbnail.findAndCount({ where: {
+          videoId: id.videoId,
+        }});
+
+        if (!count) {
+          Thumbnail.create({ type, url, width, height, videoId: id.videoId });
+        } else {
+          const thumbnail = await Thumbnail.findOne({ where: {
+            videoId: id.videoId,
+            type,
+          }});
+          await thumbnail.update({
+            type,
+            url,
+            width,
+            height,
+            videoId: id.videoId,
+          });
+        }
       }
     } catch (error) {
       console.log(`And error occured refreshing videos: ${error}`);
