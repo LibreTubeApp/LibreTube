@@ -15,6 +15,8 @@ export default class CustomDocument extends Document {
           <meta httpEquiv="x-ua-compatible" content="ie=edge" key="xUaCompat" />
           <meta name="viewport" content="width=device-width, initial-scale=1" key="viewport" />
           <meta charSet="utf-8" />
+          <meta name="theme-color" content="#f00" />
+          <link rel="manifest" href="/static/manifest.json" />
           <link rel="icon" type="image/png" href="/static/favicon64.png" sizes="64x64" />
           <link rel="icon" type="image/png" href="/static/favicon48.png" sizes="48x48" />
           <link rel="icon" type="image/png" href="/static/favicon32.png" sizes="32x32" />
