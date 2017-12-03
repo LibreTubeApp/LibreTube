@@ -1,12 +1,11 @@
 import 'isomorphic-fetch';
 import ytdl from 'ytdl-core';
 
-import { Channel, Video, Thumbnail } from '../graphql/connectors';
+import { User, Channel, Video, Thumbnail } from '../graphql/connectors';
 
 const prefix = 'https://www.googleapis.com/youtube/v3';
-const apiKey = 'AIzaSyDeFkttvdLyrHWrxoSS36rhT-YaYuJvfjc';
 
-export const getChannelById = async id => {
+export const getChannelById = async (apiKey, id) => {
   const url = `${prefix}/channels?part=snippet&key=${apiKey}&id=${id}`;
   const response = await fetch(url);
 
@@ -28,7 +27,7 @@ export const getChannelById = async id => {
   };
 };
 
-export const refreshVideosOnChannel = async channelId => {
+export const refreshVideosOnChannel = async (apiKey, channelId) => {
   const channel = await Channel.findById(channelId);
 
   const url = `${prefix}/search?part=snippet&order=date&type=video&key=${apiKey}&channelId=${channelId}&maxResults=50`;
@@ -85,10 +84,12 @@ export const refreshVideosOnChannel = async channelId => {
   });
 };
 
-export const refreshAllVideos = () => {
+export const refreshAllVideos = async () => {
+  // Best effort - get the first user's API key
+  const { apiToken } = await User.findOne();
   const channels = Channel.findAll();
   const promises = channels.map(channel => (
-    refreshVideosOnChannel(channel.id)
+    refreshVideosOnChannel(apiToken, channel.id)
   ));
 
   return Promise.all(promises).catch(error => {
@@ -125,7 +126,7 @@ export const getSubtitlesForVideo = async videoId => {
   }
 };
 
-export const searchForChannels = async (user, searchTerm) => {
+export const searchForChannels = async (apiKey, user, searchTerm) => {
   if (!user) throw 'Not authorized';
   if (!searchTerm) return [];
 

@@ -24,9 +24,9 @@ export const addChannel = async (user, id) => {
     throw `A channel with the username ${username} already exists`;
   }
 
-  const channel = await getChannelFromYouTube(id);
+  const channel = await getChannelFromYouTube(user.apiToken, id);
   const created = await Channel.create(channel);
-  await refreshVideosOnChannel(id);
+  await refreshVideosOnChannel(user.apiToken, id);
   return created;
 };
 

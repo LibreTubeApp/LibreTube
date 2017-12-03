@@ -23,7 +23,11 @@ export default {
       return getAllChannels(context.user);
     },
     channelsSearch(_, args, context) {
-      return searchForChannels(context.user, args.searchTerm);
+      return searchForChannels(
+        context.user.apiToken,
+        context.user,
+        args.searchTerm,
+      );
     },
   },
   Mutation: {
