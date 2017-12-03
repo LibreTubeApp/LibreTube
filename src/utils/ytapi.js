@@ -60,6 +60,7 @@ export const refreshVideosOnChannel = async (apiKey, channelId) => {
         const { url, width, height } = thumbnails[type];
         const { count } = await Thumbnail.findAndCount({ where: {
           videoId: id.videoId,
+          type,
         }});
 
         if (!count) {
@@ -69,6 +70,7 @@ export const refreshVideosOnChannel = async (apiKey, channelId) => {
             videoId: id.videoId,
             type,
           }});
+
           await thumbnail.update({
             type,
             url,
@@ -87,7 +89,7 @@ export const refreshVideosOnChannel = async (apiKey, channelId) => {
 export const refreshAllVideos = async () => {
   // Best effort - get the first user's API key
   const { apiToken } = await User.findOne();
-  const channels = Channel.findAll();
+  const channels = await Channel.findAll();
   const promises = channels.map(channel => (
     refreshVideosOnChannel(apiToken, channel.id)
   ));
