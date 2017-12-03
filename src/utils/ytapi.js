@@ -31,7 +31,7 @@ export const getChannelById = async id => {
 export const refreshVideosOnChannel = async channelId => {
   const channel = await Channel.findById(channelId);
 
-  const url = `${prefix}/search?part=snippet&order=date&type=video&key=${apiKey}&channelId=${channelId}`;
+  const url = `${prefix}/search?part=snippet&order=date&type=video&key=${apiKey}&channelId=${channelId}&maxResults=50`;
   const response = await fetch(url, {
     headers: {
       'If-None-Match': channel.etag,
