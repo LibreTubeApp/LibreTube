@@ -17,15 +17,19 @@ export const setupPassport = () => {
 };
 
 const dummyPassword = '$argon2i$v=19$m=32768,t=20,p=1$cHk+Rc3BPAxdZN2ASo92Mw$31RMbtKtMos7NMgAf0Hq1U6Bh6d4B/pnDNQES2U1tOk';
+export const verifyPassword = (storedHash, incomingPassword) => (
+  argon.verify(
+    // Always run password validation to impede side channel attacks
+    storedHash || dummyPassword,
+    incomingPassword,
+  )
+);
+
 export const loginUser = (request, username, password) => (
   new Promise(async (resolve, reject) => {
     try {
-      // Always run password validation to impede side channel attacks
       const user = await User.findOne({ where: { username }});
-      const validPassword = await argon.verify(
-        user ? user.password : dummyPassword,
-        password,
-      );
+      const validPassword = await verifyPassword(user.password, password);
 
       if (!user || !validPassword) {
         return reject(

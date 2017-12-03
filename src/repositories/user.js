@@ -1,15 +1,12 @@
 import argon from 'argon2';
 import { User } from '../graphql/connectors';
+import { verifyPassword } from '../utils/auth';
 
 export const addUser = async args => {
-  const matches = await User.findAndCount({
-    where: {
-      username: args.user.username,
-    },
-  });
+  const count = await User.count();
 
-  if (matches.count) {
-    throw `A user with the username ${args.user.username} already exists`;
+  if (count) {
+    throw 'A user on this system has already been registered';
   }
 
   // Some minor extra hardening
@@ -25,13 +22,26 @@ export const addUser = async args => {
   return created.dataValues;
 };
 
-export const verifyLogin = async args => {
-  const user = await User.findOne({
+export const updateUser = async (user, userInput) => {
+  if (!user) throw 'Not authorized';
+
+  const match = await User.find({
     where: {
-      username: args.username,
-    },
+      username: userInput.username,
+    }
   });
 
-  return await argon.verify(user.password, args.password);
-};
+  if (!match) throw 'This user does not exist';
 
+  const validPassword = await verifyPassword(
+    match.password,
+    userInput.password,
+  );
+
+  if (!validPassword) throw 'Invalid password';
+
+  return await match.update({
+    ...userInput,
+    password: match.password,
+  });
+};

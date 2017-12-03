@@ -33,6 +33,7 @@ export const User = db.define('user', {
   password: Sequelize.STRING,
   active: Sequelize.BOOLEAN,
   email: Sequelize.STRING,
+  apiToken: Sequelize.STRING,
 });
 
 export const Channel = db.define('channel', {

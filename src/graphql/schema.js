@@ -118,6 +118,8 @@ input UserInput {
   username: String!
   # The password to be used for login
   password: String!
+  # The backend API token
+  apiToken: String
   # An email the user can be contacted on
   email: String
 }
@@ -128,6 +130,8 @@ type Mutation {
   loginUser(username: String!, password: String!): CurrentUser
   # Erases the current user's session
   logout: CurrentUser
+  # Updates the user
+  updateUser(user: UserInput!): User
   # Adds a channel into the channel set
   addChannel(id: String!): Channel
   # Adds a user to the database of registered users

@@ -2,8 +2,8 @@ import dateScalar from './dateScalar';
 import nullScalar from './nullScalar';
 import { loginUser } from '../utils/auth';
 import { getAllVideos, getVideoById, getVideoByChannelId } from '../repositories/video';
-import { addUser } from '../repositories/user';
 import { getThumbnailsByVideoId } from '../repositories/thumbnail';
+import { addUser, updateUser } from '../repositories/user';
 import { getCurrentUser } from '../repositories/currentUser';
 import { getAllChannels, getChannelById, addChannel, removeChannel } from '../repositories/channel';
 import { getDetailsForVideo, getSubtitlesForVideo, searchForChannels } from '../utils/ytapi';
@@ -35,6 +35,9 @@ export default {
       return {
         loggedIn: false,
       };
+    },
+    updateUser(_, args, context) {
+      return updateUser(context.user, args.user);
     },
     addUser(_, args) {
       return addUser(args);
