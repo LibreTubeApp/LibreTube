@@ -1,4 +1,4 @@
-# libretube
+# LibreTube
 
 Liberate the airwaves
 
@@ -49,6 +49,14 @@ know how many users are on the other side, since we are using an API token and
 not an idividual login. It could just as easily be one or a small subset of
 users, which again makes it very hard to build a profile on you.
 
+## Censorship
+
+LibreTube works great if you're in a situation where you are encountering
+censorship. In the case YouTube is blocked, it is easy to spin up a VPS and put
+LibreTube on it and watch videos from there instead. That way you are able to
+use the application as a proxy, going around any blocks that have been placed on
+the YouTube domain or IP adresses.
+
 ## Setup
 
 The easy way is to use docker-compose to automatically set up and configure
@@ -70,6 +78,10 @@ Almost there - now we install the project's dependant libaries.
 
     yarn
 
+Then we ensure all project files are compiled into their runtime forms.
+
+    yarn run build
+
 Finally we run the server, which will run it on facing on port 80. Edit
 `docker-compose.prod.yml` if you need to change any of this.
 
@@ -88,7 +100,10 @@ settings using the environment variables `DBHOST`, `DBUSER`, `DBDATABASE` and
 
 **I ONLY CONDONE THE USE OF THIS SOFTWARE FOR PERSONAL USE.**
 
-This is mostly because I don't want to get in trouble with the big G..
+This is mostly because the big G probably would take offense to anyone using
+a proxy like this to make a competing product. This is entirely intended as an
+alternative viewing platform for an individual with specific needs, not as
+a competing product in any way.
 
 [install-yarn]: https://yarnpkg.com/en/docs/install#linux-tab
 [install-compose]: https://docs.docker.com/compose/install/
