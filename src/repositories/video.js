@@ -1,9 +1,12 @@
 import { Video } from '../graphql/connectors';
 
-export const getAllVideos = async (user) => {
+export const getAllVideos = async (user, options) => {
   if (!user) throw 'Not authorized';
 
-  return Video.findAll();
+  return Video.findAll({
+    order: [['publishedAt', 'DESC']],
+    ...options,
+  });
 };
 
 export const getVideoById = async (user, id) => {

@@ -109,7 +109,7 @@ type Query {
   # A video
   video(id: ID!): Video
   # The videos of the current user's subscriptions
-  videos: [Video]!
+  videos(limit: Int, offset: Int): [Video]!
 }
 
 # The input required to create a user

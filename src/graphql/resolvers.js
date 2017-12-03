@@ -14,7 +14,7 @@ export default {
       return getCurrentUser(context.user);
     },
     videos(_, args, context) {
-      return getAllVideos(context.user);
+      return getAllVideos(context.user, args);
     },
     video(_, args, context) {
       return getVideoById(context.user, args.id);

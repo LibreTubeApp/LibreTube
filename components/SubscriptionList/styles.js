@@ -9,21 +9,30 @@ export default css`
     grid-gap: 40px;
   }
 
-  .title {
+  .subscription-list .title {
     font-weight: bold;
   }
 
-  a {
+  .subscription-list a {
     color: var(--tertiary-color);
     text-decoration: none;
   }
 
-  p {
+  .subscription-list p {
     margin-top: 5px;
     margin-bottom: 0;
   }
 
-  img {
+  .subscription-list img {
     width: 100%;
+  }
+
+  .load-more {
+    display: block;
+    margin: 0 auto 15px;
+    text-align: center;
+  }
+  .load-more a {
+    padding: 10px 40px;
   }
 `;

@@ -15,20 +15,14 @@ const buildSrcset = thumbnails => (
 );
 
 const SubscriptionList = (props) => {
-  const {
-    data: {
-      loading,
-      error,
-      videos,
-    },
-  } = props;
+  const { loading, error, videos, loadNextPage } = props;
 
   if (error) return `An error occured: ${error}`;
   if (loading) return <p>Loading...</p>;
 
-  return (
+  return [
+    <style jsx>{styles}</style>,
     <div className="subscription-list">
-      <style jsx>{styles}</style>
       {[...videos].sort(sortByDate).map(video => (
         <div key={video.id}>
           <Link
@@ -57,13 +51,16 @@ const SubscriptionList = (props) => {
           </a>
         </div>
       ))}
-    </div>
-  );
+    </div>,
+    <div className="load-more">
+      <a className="primary-btn" onClick={loadNextPage}>Load more</a>
+    </div>,
+  ];
 };
 
 const allSubscriptions = gql`
-  query allSubscriptions {
-    videos {
+  query allSubscriptions($offset: Int, $limit: Int) {
+    videos(offset: $offset, limit: $limit) {
       id
       title
       publishedAt
@@ -79,4 +76,35 @@ const allSubscriptions = gql`
   }
 `
 
-export default graphql(allSubscriptions)(SubscriptionList)
+const ITEMS_PER_PAGE = 15;
+
+export default graphql(allSubscriptions, {
+  options: props => ({
+    variables: {
+      offset: 0,
+      limit: ITEMS_PER_PAGE,
+    },
+  }),
+  props({ data: { loading, videos, fetchMore }}) {
+    return {
+      loading,
+      videos,
+      loadNextPage() {
+        return fetchMore({
+          variables: {
+            offset: videos.length,
+          },
+
+          updateQuery: (previousResult, { fetchMoreResult }) => {
+            if (!fetchMoreResult) return previousResult;
+
+            return {
+              ...previousResult,
+              videos: [...previousResult.videos, ...fetchMoreResult.videos],
+            };
+          },
+        });
+      },
+    };
+  },
+})(SubscriptionList)

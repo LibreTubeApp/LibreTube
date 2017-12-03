@@ -133,6 +133,7 @@ export default css`
     background-color: var(--primary-color);
     border-bottom: 3px solid var(--primary-color-medium-dark);
     color: var(--secondary-color);
+    cursor: pointer;
   }
 
   .primary-btn:hover {
