@@ -59,7 +59,7 @@ export const refreshVideosOnChannel = async channelId => {
 
       for (const type in thumbnails) {
         const { url, width, height } = thumbnails[type];
-        const { count } = Thumbnail.findAndCount({ where: {
+        const { count } = await Thumbnail.findAndCount({ where: {
           videoId: id.videoId,
         }});
 
