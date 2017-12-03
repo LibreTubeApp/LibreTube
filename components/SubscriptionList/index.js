@@ -47,7 +47,7 @@ const SubscriptionList = (props) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <p>{video.channel.username}</p>
+            <p>{video.channel.title}</p>
           </a>
         </div>
       ))}
@@ -66,7 +66,7 @@ const allSubscriptions = gql`
       publishedAt
       channel {
         id
-        username
+        title
       }
       thumbnails {
         url
