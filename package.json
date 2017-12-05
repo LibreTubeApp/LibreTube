@@ -10,7 +10,7 @@
     "build:next": "next build",
     "build:js": "babel src -d dist",
     "build:sw": "node generate-sw.js",
-    "build": "npm run build:next && npm run build:js && npm run build:sw",
+    "build": "NODE_ENV=production npm run build:next && npm run build:js && npm run build:sw",
     "start": "NODE_ENV=production node dist/server.js",
     "test": "jest"
   },
@@ -64,6 +64,7 @@
     "jest": "^21.2.1",
     "load-json-file": "^4.0.0",
     "nodemon": "^1.12.1",
+    "workbox-build": "^3.0.0-alpha.2",
     "workbox-webpack-plugin": "^2.1.2"
   }
 }

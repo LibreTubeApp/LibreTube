@@ -1,12 +1,40 @@
-const fs = require('fs')
-const path = require('path')
-const globby = require('globby')
+const fs = require('fs');
+const path = require('path');
+const globby = require('globby');
 const loadJsonFile = require('load-json-file');
+const workbox = require('workbox-build');
 
 const dotNext = path.resolve(__dirname, './.next')
 const target = path.resolve(__dirname, './.next/sw.js')
 
-function bundles(app) {
+async function buildWorker() {
+  let app = {
+    buildId: fs.readFileSync(`${dotNext}/BUILD_ID`, 'utf8'),
+    precaches: []
+  }
+
+  const stats = await loadJsonFile(`${dotNext}/build-stats.json`);
+  Object.keys(stats).map(src => {
+    // /_next/9265fa769281943ee96625770433e573/app.js
+    app.precaches.push(`/_next/${stats[src].hash}/${src}`)
+  })
+
+  app = await addChunks(app);
+  app = await addBundles(app);
+
+  const workboxSrc = await workbox.copyWorkboxLibraries(dotNext);
+
+  fs.writeFileSync(
+    target,
+    swSnippet(
+      JSON.stringify(app.precaches, null, 2),
+      workboxSrc,
+    ),
+    'utf8'
+  );
+}
+
+function addBundles(app) {
   return new Promise((resolve, reject) => {
     fs.readdir(`${dotNext}/bundles/pages`, (err, files) => {
       if (err) {
@@ -29,7 +57,7 @@ function bundles(app) {
   })
 }
 
-function chunks(app) {
+function addChunks(app) {
   return new Promise((resolve, reject) => {
     fs.readdir(`${dotNext}/chunks`, (err, files) => {
       if (err) {
@@ -52,43 +80,19 @@ function chunks(app) {
   })
 }
 
-function app() {
-  const app = {
-    buildId: fs.readFileSync(`${dotNext}/BUILD_ID`, 'utf8'),
-    precaches: []
-  }
-
-  return loadJsonFile(`${dotNext}/build-stats.json`).then(stats => {
-    Object.keys(stats).map(src => {
-      // /_next/9265fa769281943ee96625770433e573/app.js
-      app.precaches.push(`/_next/${stats[src].hash}/${src}`)
-    })
-
-    return app
-  })
-}
-
-const swSnippet = (precache) =>
-`importScripts('https://unpkg.com/workbox-sw@2.0.2-rc1/build/importScripts/workbox-sw.prod.v2.0.2-rc1-2.0.2-rc1.0.js')
+const swSnippet = (precache, workboxSrc) =>
+`importScripts('/.next/${workboxSrc}')
 
 const workboxSW = new WorkboxSW({ clientsClaim: true });
 
 // set precahe listed item
-workboxSW.precache(${precache});
+workboxSW.precaching.precache(${precache});
 
 // cache very first page by sw
 workboxSW.router.registerRoute(
   '/',
   workboxSW.strategies.staleWhileRevalidate()
 );
-`
+`;
 
-app()
-  .then(chunks)
-  .then(bundles)
-  .then(app => {
-    fs.writeFileSync(target,
-      swSnippet(JSON.stringify(app.precaches, null, 2)),
-      'utf8'
-    )
-  })
+buildWorker();
