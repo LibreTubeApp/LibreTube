@@ -57,6 +57,39 @@ LibreTube on it and watch videos from there instead. That way you are able to
 use the application as a proxy, going around any blocks that have been placed on
 the YouTube domain or IP adresses.
 
+## Security
+
+Security is something I take very seriously. Therefore there are a lot of
+security features in this application.
+
+- Uses a strong and modern algorithm to hash passwords.
+- Sets security headers via the excellent helmet library.
+- Includes CSP by default. The implementation is somewhat hamstrung by Next.js'
+  lacking support though.
+
+If you find any security sensitive flaws, feel free to contact me by email. You
+can find it at henriksen.is.
+
+## Technology
+
+The app is very modern, using the latest in buzzword technology. It is
+a serverside rendered progressive webapp. The backend is
+a nodejs fullstack javascript expressjs powered next.js rendered react app with
+an Apollo GraphQL API wich is rehydrated on the client.
+
+Enough buzzwords? Okay. Check this out though:
+
+INSERT GIF OF INSTALLING THE APP HERE.
+
+That's PWA being installed on a phone. This way it should be able to replace
+your YouTube app if your phone supports.
+
+## Support
+
+This project will never support any browsers other than the newest version of
+the major browsers (excluding IE). It probably will work in earlier versions up
+to a point, but your milage may vary.
+
 ## Setup
 
 The easy way is to use docker-compose to automatically set up and configure
