@@ -18,7 +18,7 @@ import resolvers from './graphql/resolvers';
 import { db, User } from './graphql/connectors';
 import parseXml from './utils/parseXml';
 import startCron from './utils/cron';
-import { setupPassport } from './utils/auth';
+import { setupPassport, buildHelmetOptions } from './utils/auth';
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -32,37 +32,13 @@ startCron();
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 const SequelizeStore = storeBuilder(session.Store);
 
-const getCspOverrides = (type) => {
-  if (dev) return ["'self'", "'unsafe-eval'", "'unsafe-inline'"];
-  // SSR inlines styles
-  if (type === 'style') return ["'self'", "'unsafe-inline'"];
-  // SSR inlines scripts :(
-  // Follow this issue for proper CSP support
-  // https://github.com/zeit/next.js/issues/256
-  if (type === 'script') return ["'self'", "'unsafe-inline'"];
-  return "'self'";
-};
-
 if (process.env.PROXY === 'true') {
   server.set('trust proxy', 1); // trust first proxy
 }
 
 // Middlewares
-server.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: getCspOverrides('script'),
-      styleSrc: getCspOverrides('style'),
-      // TODO proxy images and remove this
-      imgSrc: ["'self'", 'https://*.ytimg.com'],
-    },
-    browserSniff: false,
-  },
-  referrerPolicy: {
-    policy: 'no-referrer',
-  },
-}));
+server.disable('x-powered-by');
+server.use(helmet(buildHelmetOptions()));
 server.use(bodyParser.json());
 server.use(session({
   store: new SequelizeStore({ db }),

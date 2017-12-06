@@ -53,3 +53,30 @@ export const loginUser = (request, username, password) => (
   })
 );
 
+const dev = process.env.NODE_ENV !== 'production';
+const getCspOverrides = (type) => {
+  if (dev) return ["'self'", "'unsafe-eval'", "'unsafe-inline'"];
+  // SSR inlines styles
+  if (type === 'style') return ["'self'", "'unsafe-inline'"];
+  // Next.js doesn't support CSP :(
+  // Follow this issue for proper CSP support
+  // https://github.com/zeit/next.js/issues/256
+  if (type === 'script') return ["'self'", "'unsafe-inline'", "'unsafe-eval'"];
+  return "'self'";
+};
+
+export const buildHelmetOptions = () => ({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: getCspOverrides('script'),
+      styleSrc: getCspOverrides('style'),
+      // TODO proxy images and remove this
+      imgSrc: ["'self'", 'https://*.ytimg.com'],
+    },
+    browserSniff: false,
+  },
+  referrerPolicy: {
+    policy: 'no-referrer',
+  },
+});
