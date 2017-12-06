@@ -36,6 +36,7 @@ const getCspOverrides = () => {
   if (dev) {
     return ["'self'", "'unsafe-eval'", "'unsafe-inline'"];
   }
+  return ["'self'"];
 };
 
 if (process.env.PROXY === 'true') {
