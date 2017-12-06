@@ -32,11 +32,15 @@ startCron();
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 const SequelizeStore = storeBuilder(session.Store);
 
-const getCspOverrides = () => {
-  if (dev) {
-    return ["'self'", "'unsafe-eval'", "'unsafe-inline'"];
-  }
-  return ["'self'"];
+const getCspOverrides = (type) => {
+  if (dev) return ["'self'", "'unsafe-eval'", "'unsafe-inline'"];
+  // SSR inlines styles
+  if (type === 'style') return ["'self'", "'unsafe-inline'"];
+  // SSR inlines scripts :(
+  // Follow this issue for proper CSP support
+  // https://github.com/zeit/next.js/issues/256
+  if (type === 'script') return ["'self'", "'unsafe-inline'"];
+  return "'self'";
 };
 
 if (process.env.PROXY === 'true') {
@@ -48,8 +52,8 @@ server.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: getCspOverrides(),
-      styleSrc: getCspOverrides(),
+      scriptSrc: getCspOverrides('script'),
+      styleSrc: getCspOverrides('style'),
       // TODO proxy images and remove this
       imgSrc: ["'self'", 'https://*.ytimg.com'],
     },
