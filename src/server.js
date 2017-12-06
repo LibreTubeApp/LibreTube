@@ -3,6 +3,7 @@ import path from 'path';
 import { parse } from 'url';
 import express from 'express'
 import session from 'express-session';
+import helmet from 'helmet';
 import next from 'next';
 import passport from 'passport';
 import bodyParser from 'body-parser';
@@ -31,11 +32,41 @@ startCron();
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 const SequelizeStore = storeBuilder(session.Store);
 
+const getCspOverrides = () => {
+  if (dev) {
+    return ["'self'", "'unsafe-eval'", "'unsafe-inline'"];
+  }
+};
+
+if (process.env.PROXY === 'true') {
+  server.set('trust proxy', 1); // trust first proxy
+}
+
 // Middlewares
+server.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: getCspOverrides(),
+      styleSrc: getCspOverrides(),
+      // TODO proxy images and remove this
+      imgSrc: ["'self'", 'https://*.ytimg.com'],
+    },
+    browserSniff: false,
+  },
+  referrerPolicy: {
+    policy: 'no-referrer',
+  },
+}));
 server.use(bodyParser.json());
 server.use(session({
   store: new SequelizeStore({ db }),
   secret: 'dogs',
+  name: 'session',
+  cookie: {
+    secure: process.env.HTTPS === 'true',
+    expires: new Date(Date.now() + 48 * 60 * 60 * 1000) // 48 hours
+  },
 }));
 server.use(passport.initialize());
 server.use(passport.session());

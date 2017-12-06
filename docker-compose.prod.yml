@@ -2,19 +2,34 @@ version: '3'
 
 services:
   db:
+    # Restart if the container crashes
     restart: always
     environment:
-      POSTGRES_PASSWORD: hunter12
+      # Create the a postgres user with this username
       POSTGRES_USER: libretube
+      # Create the a postgres user with this password
+      POSTGRES_PASSWORD: hunter12
+      # Create the the following postgres database
       POSTGRES_DB: libretube
 
   web:
+    # Restart if the container crashes
     restart: always
     ports:
+      # Exposes the server on port 80
       - "80:3000"
     environment:
-      NODE_ENV: production
+      # Change to "true" if you are using HTTPS (user facing)
+      HTTPS: "false"
+      # Change to "true" if you are running behind a reverse proxy server
+      PROXY: "false"
+      # The host the DB is on - defaults to the bundled postgres server
       DBHOST: db
+      # The postgres user
       DBUSER: libretube
-      DBDATABASE: libretube
+      # The postgres user's password
       DBPASSWORD: hunter12
+      # The postgres database to use for storage
+      DBDATABASE: libretube
+      # DO NOT change this. This enables production optimizations
+      NODE_ENV: production
