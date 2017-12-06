@@ -1,4 +1,5 @@
 import 'babel-polyfill';
+import path from 'path';
 import { parse } from 'url';
 import express from 'express'
 import session from 'express-session';
@@ -87,6 +88,8 @@ app.prepare().then(() => {
     const payload = await parseXml(xml);
     res.type('text/vtt').send(payload);
   });
+
+  server.use('/sw.js', express.static(path.join(__dirname, '../.next/sw.js')));
 
   server.get('*', (req, res) => {
     const parsedUrl = parse(req.url, true);
