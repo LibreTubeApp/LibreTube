@@ -12,6 +12,8 @@ This project aims to supply that niche with a solution that can work for them.
 This project enables you to take back ownership of your data while still being
 able to watch the great content on YouTube.
 
+![Screenshot of the app][screenshot]
+
 ## How does it work?
 
 Create an API key for consuming API data, then register it in the app. If
@@ -163,3 +165,4 @@ a competing product in any way.
 [install-yarn]: https://yarnpkg.com/en/docs/install#linux-tab
 [install-compose]: https://docs.docker.com/compose/install/
 [install-node]: https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
+[screenshot]: https://github.com/LibreTubeApp/LibreTube/raw/master/assets/screenshot.png
