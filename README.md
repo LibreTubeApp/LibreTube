@@ -1,6 +1,6 @@
 # LibreTube
 
-Liberate the airwaves
+_Liberate the airwaves_
 
 Problem: Most of the world's video content is hosted in YouTube. You don't
 have a google account, but still wish to follow your favourite channels' videos.
@@ -8,18 +8,24 @@ have a google account, but still wish to follow your favourite channels' videos.
 Solution: Use self-hosted software to register your channels, then use YouTube's
 data API to fetch them. No Google account required!
 
-Current plan:
-- Server which reads from the YouTube API
-- Client where user sets an API token
-- Server which fetches the registered user's subscriptions
-- PWA client which lists subscriptions' new videos
-- Clicking on a video shows a youtube-nocookie.com iframe
+This project aims to supply that niche with a solution that can work for them.
+This project enables you to take back ownership of your data while still being
+able to watch the great content on YouTube.
 
 ## How does it work?
 
 Create an API key for consuming API data, then register it in the app. If
 worried about privacy, you can create a throwaway google account for the
 purpose of consuming from the YouTube API.
+
+In a nutshell, this project includes:
+
+- A Server which reads from the YouTube API
+- A Client where user sets an API token
+- The server fetches the registered user's subscriptions
+- A PWA client which can be installed on a user's phone
+
+See also the [companion browser extension][webext].
 
 ## Privacy
 
@@ -31,9 +37,9 @@ is the same idea as having a throwaway google account that you have your
 subscriptions in. If that seems like a more appealing option for you, don't let
 me stop you. However, consider the following points:
 
-There is a difference in terms of tracking, though. This project proxies all
-assets through the included web server, which makes it impossible for YouTube to
-include any tracking elements with the video. This also means you're not running
+There is a difference in terms of tracking. This project proxies all assets
+through the included web server, which makes it impossible for anyone to
+include any tracking cookies with the assets. This also means you're not running
 any proprietary javascript when watching YouTube, if that's something you care
 about.
 
@@ -46,8 +52,9 @@ a profile on you.
 
 Another cool aspect of the proxy server is that it is impossible for YouTube to
 know how many users are on the other side, since we are using an API token and
-not an idividual login. It could just as easily be one or a small subset of
-users, which again makes it very hard to build a profile on you.
+not an idividual login. It could just as easily be many users that are using
+this API token as far as google is concernec, which again makes it very hard to
+build a profile on you.
 
 ## Censorship
 
@@ -59,30 +66,29 @@ the YouTube domain or IP adresses.
 
 ## Security
 
-Security is something I take very seriously. Therefore there are a lot of
-security features in this application.
+Security is something I take very seriously.
 
-- Uses a strong and modern algorithm to hash passwords.
-- Sets security headers via the excellent helmet library.
-- Includes CSP by default. The implementation is somewhat hamstrung by Next.js'
-  lacking support though.
+- The app uses a strong and modern algorithm to hash passwords.
+- The app sets security headers via the helmet security library.
+- The app includes CSP by default. The implementation is somewhat hamstrung by
+  Next.js' lacking support though.
 
-If you find any security sensitive flaws, feel free to contact me by email. You
-can find it at henriksen.is.
+If you find any security sensitive flaws, feel free to contact me by email
+directly. You can find it at henriksen.is.
 
 ## Technology
 
-The app is very modern, using the latest in buzzword technology. It is
+The app is very modern, using the latest in buzzword technology. The frontend is
 a serverside rendered progressive webapp. The backend is
 a nodejs fullstack javascript expressjs powered next.js rendered react app with
 an Apollo GraphQL API wich is rehydrated on the client.
 
-Enough buzzwords? Okay. Check this out though:
+Enough buzzwords? Okay. Check this out:
 
 INSERT GIF OF INSTALLING THE APP HERE.
 
 That's PWA being installed on a phone. This way it should be able to replace
-your YouTube app if your phone supports.
+your YouTube app if your OS supports PWAs.
 
 ## Support
 
@@ -96,16 +102,16 @@ The easy way is to use docker-compose to automatically set up and configure
 docker containers for you. If you set up an "ubuntu docker" one-click app on
 digitalocean, for example, you can follow the following steps:
 
-First we check the code out from version control.
-
-    git clone https://gitlab.henriksen.is/espen/libretube.git
-    cd libretube
-
-Next, we install the required software.
+First, ensure all the required software is installed on your server:
 
 - [Install yarn][install-yarn]
 - [Install docker-compose][install-compose]
 - [Node.js 8][install-node]
+
+Then we check the code out from version control.
+
+    git clone https://github.com/LibreTubeApp/LibreTube.git
+    cd libretube
 
 Almost there - now we install the project's dependant libaries.
 
@@ -123,6 +129,21 @@ Finally we run the server, which will run it on facing on port 80. Edit
 > Note: Many production optimizations are currently not enabled, so it will be
 > slower than it can potentially be
 
+### Updating
+
+When updating, simply pull and update the project.
+
+    git pull
+    yarn
+    yarn run build
+    docker-compose -f docker-compose.yml -f docker-compose.prod.yml restart web
+
+_TODO: Database migrations. Until this is implemented you may have to wipe your
+db when upgrading._
+
+To check for updates without updating, do a `git fetch` and `git status`. If it
+says that you are behind remote origin, then you have updates available to pull.
+
 ### Without docker
 
 The GraphQL server assumes a PGSQL database that is accessible. Configure the
@@ -138,6 +159,7 @@ a proxy like this to make a competing product. This is entirely intended as an
 alternative viewing platform for an individual with specific needs, not as
 a competing product in any way.
 
+[webext]: https://github.com/LibreTubeApp/LibreTube-webext
 [install-yarn]: https://yarnpkg.com/en/docs/install#linux-tab
 [install-compose]: https://docs.docker.com/compose/install/
 [install-node]: https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
