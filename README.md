@@ -98,7 +98,7 @@ This project will never support any browsers other than the newest version of
 the major browsers (excluding IE). It probably will work in earlier versions up
 to a point, but your milage may vary.
 
-## Setup
+## Running in production
 
 The easy way is to use docker-compose to automatically set up and configure
 docker containers for you. If you set up an "ubuntu docker" one-click app on
@@ -128,9 +128,6 @@ Finally we run the server, which will run it on facing on port 80. Edit
 
     docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
-> Note: Many production optimizations are currently not enabled, so it will be
-> slower than it can potentially be
-
 ### Updating
 
 When updating, simply pull and update the project.
@@ -148,9 +145,14 @@ says that you are behind remote origin, then you have updates available to pull.
 
 ### Without docker
 
-The GraphQL server assumes a PGSQL database that is accessible. Configure the
-settings using the environment variables `DBHOST`, `DBUSER`, `DBDATABASE` and
-`DBPASSWORD`.
+The GraphQL server assumes a PGSQL database that is setup with a database and
+user that the server can access. Configure it using the environment variables
+`DBHOST`, `DBUSER`, `DBDATABASE` and `DBPASSWORD`.
+
+## Contributing
+
+If you want to help out, see the [contribution guide][contributing]. Any and all
+help is appreciated!
 
 ## Disclaimer
 
