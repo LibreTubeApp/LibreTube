@@ -168,3 +168,4 @@ a competing product in any way.
 [install-compose]: https://docs.docker.com/compose/install/
 [install-node]: https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
 [screenshot]: https://github.com/LibreTubeApp/LibreTube/raw/master/assets/screenshot.png
+[contributing]: CONTRIBUTING.md
