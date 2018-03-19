@@ -61,7 +61,7 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-2": "^6.24.1",
-    "globby": "^7.1.1",
+    "globby": "^8.0.1",
     "jest": "^21.2.1",
     "load-json-file": "^4.0.0",
     "nodemon": "^1.12.1",
