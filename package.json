@@ -43,7 +43,7 @@
     "next": "^4.1.4",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "pg": "^6.4.2",
+    "pg": "^7.4.1",
     "pg-hstore": "^2.3.2",
     "react": "^16.2.0",
     "react-apollo": "^2.0.1",
