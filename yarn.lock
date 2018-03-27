@@ -301,9 +301,9 @@ are-we-there-yet@~1.1.2:
     delegates "^1.0.0"
     readable-stream "^2.0.6"
 
-argon2@^0.16.2:
-  version "0.16.2"
-  resolved "https://registry.yarnpkg.com/argon2/-/argon2-0.16.2.tgz#e9aac43ea67b7288dc0128325c55c6eb5cec0e7e"
+argon2@^0.17.3:
+  version "0.17.3"
+  resolved "https://registry.yarnpkg.com/argon2/-/argon2-0.17.3.tgz#969ee3ed873489d96cec2a313029673d1e534f81"
   dependencies:
     any-promise "^1.3.0"
     bindings "^1.2.1"
