@@ -24,7 +24,7 @@
     "apollo-link-context": "^1.0.1",
     "apollo-link-http": "^1.2.0",
     "apollo-server-express": "^1.2.0",
-    "argon2": "^0.16.2",
+    "argon2": "^0.18.1",
     "babel-polyfill": "^6.26.0",
     "connect-ensure-login": "^0.1.1",
     "connect-session-sequelize": "^5.0.1",
