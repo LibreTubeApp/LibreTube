@@ -3849,9 +3849,9 @@ junk@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/junk/-/junk-1.0.3.tgz#87be63488649cbdca6f53ab39bec9ccd2347f592"
 
-just-debounce-it@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/just-debounce-it/-/just-debounce-it-1.0.1.tgz#c8e54057c2c3e9e5802aa764ff2c5a67650d7bdd"
+just-debounce-it@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/just-debounce-it/-/just-debounce-it-1.1.0.tgz#8e92578effc155358a44f458c52ffbee66983bef"
 
 kind-of@^3.0.2:
   version "3.2.2"
