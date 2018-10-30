@@ -52,7 +52,7 @@
     "react-feather": "^1.0.7",
     "sequelize": "^4.23.2",
     "xml2js": "^0.4.19",
-    "ytdl-core": "^0.18.3"
+    "ytdl-core": "^0.27.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
