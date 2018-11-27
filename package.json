@@ -23,7 +23,7 @@
     "apollo-link": "^1.0.3",
     "apollo-link-context": "^1.0.1",
     "apollo-link-http": "^1.2.0",
-    "apollo-server-express": "^1.2.0",
+    "apollo-server-express": "^2.2.3",
     "argon2": "^0.16.2",
     "babel-polyfill": "^6.26.0",
     "connect-ensure-login": "^0.1.1",
