@@ -34,7 +34,7 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "graphql": "^0.11.7",
-    "graphql-tag": "^2.5.0",
+    "graphql-tag": "^2.10.1",
     "graphql-tools": "^2.10.0",
     "helmet": "^3.9.0",
     "isomorphic-fetch": "^2.2.1",
