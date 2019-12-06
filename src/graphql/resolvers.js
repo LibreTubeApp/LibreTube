@@ -32,6 +32,7 @@ export default {
   },
   Mutation: {
     loginUser(_, { username, password }, context) {
+      console.log('context', context);
       return loginUser(context.request, username, password);
     },
     logout(_, args, context) {

@@ -1,88 +1,10 @@
 import React from 'react';
-import { graphql, compose } from 'react-apollo';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
 import ErrorMessage from '../ErrorMessage';
 
-class APITokenForm extends React.Component {
-  state = {
-    username: '',
-    password: '',
-    error: null,
-  };
-
-  handleChange = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
-  };
-
-  handleSubmit = async event => {
-    const { data } = this.props;
-    const { password, apiToken } = this.state;
-    event.preventDefault();
-
-    this.setState({ submitting: true, error: null });
-
-    try {
-      await this.props.mutate({
-        variables: {
-          user: {
-            username: data.currentUser.user.username,
-            password,
-            apiToken,
-          },
-        },
-      });
-      this.setState({ submitting: false });
-    } catch (error) {
-      this.setState({ error, submitting: false });
-    }
-  };
-
-  render() {
-    const { submitting, error } = this.state;
-
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          API Token
-          <input
-            name="apiToken"
-            type="text"
-            required
-            onChange={this.handleChange}
-          />
-        </label>
-
-        <label>
-          Confirm password
-          <input
-            name="password"
-            type="password"
-            autoComplete="current-password"
-            required
-            onChange={this.handleChange}
-          />
-        </label>
-
-        <input
-          type="submit"
-          className="primary-btn"
-          disabled={submitting}
-          value="Submit"
-        />
-
-        <ErrorMessage
-          message="Failed to update user."
-          error={error}
-        />
-        {submitting && <p>Please wait...</p>}
-      </form>
-    );
-  }
-}
-
-const currentUser = gql`
+const CURRENT_USER = gql`
   query CurrentUser {
     currentUser {
       user {
@@ -92,7 +14,7 @@ const currentUser = gql`
   }
 `;
 
-const updateApiToken = gql`
+const UPDATE_API_TOKEN = gql`
   mutation APITokenUpdate($user: UserInput!) {
     updateUser(user: $user) {
       id
@@ -100,7 +22,81 @@ const updateApiToken = gql`
   }
 `;
 
-export default compose(
-  graphql(currentUser),
-  graphql(updateApiToken),
-)(APITokenForm);
+const APITokenForm = () => {
+  const { data } = useQuery(CURRENT_USER);
+  const [updateToken] = useMutation(UPDATE_API_TOKEN);
+  const [state, setState] = useState({
+    username: '',
+    password: '',
+    error: null,
+  });
+
+  const handleChange = event => {
+    const { name, value } = event.target;
+    setState({ [name]: value });
+  };
+
+  const handleSubmit = async event => {
+    const { password, apiToken } = state;
+    event.preventDefault();
+
+    setState({ submitting: true, error: null });
+
+    try {
+      await updateToken({
+        variables: {
+          user: {
+            username: data.currentUser.user.username,
+            password,
+            apiToken,
+          },
+        },
+      });
+      setState({ submitting: false });
+    } catch (error) {
+      setState({ error, submitting: false });
+    }
+  };
+
+  const { submitting, error } = state;
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        API Token
+        <input
+          name="apiToken"
+          type="text"
+          required
+          onChange={handleChange}
+        />
+      </label>
+
+      <label>
+        Confirm password
+        <input
+          name="password"
+          type="password"
+          autoComplete="current-password"
+          required
+          onChange={handleChange}
+        />
+      </label>
+
+      <input
+        type="submit"
+        className="primary-btn"
+        disabled={submitting}
+        value="Submit"
+      />
+
+      <ErrorMessage
+        message="Failed to update user."
+        error={error}
+      />
+      {submitting && <p>Please wait...</p>}
+    </form>
+  );
+}
+
+export default APITokenForm;

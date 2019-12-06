@@ -10,7 +10,7 @@ export const setupPassport = () => {
   });
 
   passport.deserializeUser((id, done) => {
-    User.findById(id)
+    User.findByPk(id)
       .then(user => done(null, user))
       .catch(error => done(error));
   });
@@ -29,7 +29,7 @@ export const loginUser = (request, username, password) => (
   new Promise(async (resolve, reject) => {
     try {
       const user = await User.findOne({ where: { username }});
-      const validPassword = await verifyPassword(user.password, password);
+      const validPassword = await verifyPassword(user && user.password, password);
 
       if (!user || !validPassword) {
         return reject(

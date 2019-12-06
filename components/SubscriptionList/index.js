@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
-import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
+import distanceInWordsToNow from 'date-fns/formatDistanceToNow'
 
 import styles from './styles'
 

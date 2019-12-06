@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 
 export default async (context, apolloClient) => {
   try {
-    const { data } = await apolloClient.query({
+    const { data } = await context.apolloClient.query({
       query: gql`
         query getUser {
           currentUser {

@@ -1,4 +1,5 @@
-import 'babel-polyfill';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import path from 'path';
 import { parse } from 'url';
 import express from 'express'
@@ -7,7 +8,7 @@ import helmet from 'helmet';
 import next from 'next';
 import passport from 'passport';
 import bodyParser from 'body-parser';
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
+import { ApolloServer, graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 import ytdl from 'ytdl-core';
 import { ensureLoggedIn } from 'connect-ensure-login';
@@ -22,9 +23,15 @@ import { setupPassport, buildHelmetOptions } from './utils/auth';
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev });
-const handle = app.getRequestHandler()
+const nextApp = next({ dev });
+const handle = nextApp.getRequestHandler()
 const server = express();
+const apolloServer = new ApolloServer({ typeDefs, resolvers, context: expressContext => ({
+      user: expressContext.req.user,
+  request: expressContext.req,
+  response: expressContext.res
+})
+});
 
 setupPassport();
 startCron();
@@ -38,11 +45,11 @@ if (process.env.PROXY === 'true') {
 
 // Middlewares
 server.disable('x-powered-by');
-server.use(helmet(buildHelmetOptions()));
+// server.use(helmet(buildHelmetOptions()));
 server.use(bodyParser.json());
 server.use(session({
   store: new SequelizeStore({ db }),
-  secret: 'dogs',
+  secret: 'i-love-dogs',
   name: 'session',
   cookie: {
     secure: process.env.HTTPS === 'true',
@@ -52,7 +59,9 @@ server.use(session({
 server.use(passport.initialize());
 server.use(passport.session());
 
-app.prepare().then(() => {
+nextApp.prepare().then(() => {
+  apolloServer.applyMiddleware({ app: server });
+  /*
   server.use('/graphql', graphqlExpress((request, response) => ({
     schema,
     context: {
@@ -67,6 +76,7 @@ app.prepare().then(() => {
       endpointURL: '/graphql',
     }));
   }
+  */
 
   server.use('/videoplayback', ensureLoggedIn(), (req, res) => {
     const { v: videoId } = req.query;

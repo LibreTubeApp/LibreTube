@@ -5,15 +5,8 @@ export const db = new Sequelize(
   process.env.DBUSER,
   process.env.DBPASSWORD,
   {
-    host: process.env.DBHOST,
-    dialect: 'postgres',
-    pool: {
-      max: 5,
-      min: 0,
-      acquire: 30000,
-      idle: 10000
-    },
-    operatorsAliases: false
+    dialect: 'sqlite',
+    storage: '/data/libretube.sqlite',
   },
 );
 
@@ -33,7 +26,7 @@ export const User = db.define('user', {
   password: Sequelize.STRING,
   active: Sequelize.BOOLEAN,
   email: Sequelize.STRING,
-  apiToken: Sequelize.STRING,
+  // apiToken: Sequelize.STRING,
 });
 
 export const Channel = db.define('channel', {

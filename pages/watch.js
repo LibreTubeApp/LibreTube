@@ -1,7 +1,6 @@
 import React from 'react';
-import { withApollo, compose } from 'react-apollo';
 
-import withData from '../utils/withData';
+import { withApollo } from '../utils/apollo';
 import redirect from '../utils/redirect';
 import isLoggedIn from '../utils/isLoggedIn';
 import Layout from '../components/Layout';
@@ -29,7 +28,4 @@ class Watch extends React.Component {
   }
 };
 
-export default compose(
-  withData,
-  withApollo
-)(Watch);
+export default withApollo(Watch);

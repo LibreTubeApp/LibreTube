@@ -1,3 +1,8 @@
+// TODO adapt new schema from
+// https://www.youtube.com/feeds/videos.xml?channel_id=UCBcRF18a7Qf58cCRy5xuWwQ
+//
+// TODO sjekke umzug for migrations
+// https://github.com/sequelize/umzug
 export default [`
 scalar Date
 scalar Null
@@ -118,8 +123,6 @@ input UserInput {
   username: String!
   # The password to be used for login
   password: String!
-  # The backend API token
-  apiToken: String
   # An email the user can be contacted on
   email: String
 }

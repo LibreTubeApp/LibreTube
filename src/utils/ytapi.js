@@ -1,4 +1,4 @@
-import 'isomorphic-fetch';
+import fetch from 'isomorphic-unfetch';
 import ytdl from 'ytdl-core';
 
 import { User, Channel, Video, Thumbnail } from '../graphql/connectors';
@@ -88,6 +88,7 @@ export const refreshVideosOnChannel = async (apiKey, channelId) => {
 
 export const refreshAllVideos = async () => {
   // Best effort - get the first user's API key
+  return // TODO rewrite in RSS
   const { apiToken } = await User.findOne();
   const channels = await Channel.findAll();
   const promises = channels.map(channel => (

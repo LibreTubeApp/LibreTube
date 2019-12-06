@@ -1,7 +1,6 @@
 import React from 'react';
-import { withApollo, compose } from 'react-apollo'
 
-import withData from '../utils/withData';
+import { withApollo } from '../utils/apollo'
 import redirect from '../utils/redirect';
 import isLoggedIn from '../utils/isLoggedIn';
 import Layout from '../components/Layout';
@@ -9,8 +8,8 @@ import AddSubscription from '../components/AddSubscription';
 import SubscriptionList from '../components/SubscriptionList';
 
 class Index extends React.Component {
-  static async getInitialProps (context, apolloClient) {
-    if (!await isLoggedIn(context, apolloClient)) {
+  static async getInitialProps (context) {
+    if (!await isLoggedIn(context)) {
       redirect(context, '/login');
     }
 
@@ -49,7 +48,4 @@ class Index extends React.Component {
   }
 }
 
-export default compose(
-  withData,
-  withApollo,
-)(Index);
+export default withApollo(Index);

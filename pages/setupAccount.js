@@ -1,8 +1,8 @@
-import withData from '../utils/withData'
+import { withApollo } from '../utils/apollo';
 import Layout from '../components/Layout';
 import AccountSetup from '../components/AccountSetup';
 
-export default withData(props => (
+export default withApollo(props => (
   <Layout title="Account setup - Libretube" >
     <main className="fixed-width">
       <h1>Let's get started</h1>

@@ -72,7 +72,7 @@ const fonts = `
 }
 `;
 
-export default css`
+export default css.global`
   ${fonts}
 
   :root {
